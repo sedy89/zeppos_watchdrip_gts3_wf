@@ -5,6 +5,10 @@ export class PumpData {
         this.bat = bat;
     }
 
+    getPumpIOB() {
+        return "IOB: " + this.iob;
+    }
+    
     static createEmpty() {
         return new PumpData("", "", "");
     }

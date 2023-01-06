@@ -92,6 +92,30 @@
         }
       ],
       "designWidth": 336
+    },
+    "gts3": {
+      "module": {
+        "watchface": {
+          "path": "watchface/entry/gts3/index",
+          "main": 1,
+          "editable": 1,
+          "lockscreen": 1
+        },
+        "app-side": {
+          "path": "app-side/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gts3",
+          "deviceSource": 224
+        },
+        {
+          "name": "gts3-w",
+          "deviceSource": 225
+        }
+      ],
+      "designWidth": 336
     }
   },
   "i18n": {
