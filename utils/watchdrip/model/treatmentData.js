@@ -27,13 +27,7 @@ export class TreatmentData {
     getTreatments() {
         let treatmentText = "";
         if (this.insulin > 0) {
-            let insTmp = "";
-            if (this.insulin.split(".")[1].length > 3) {
-                insTmp = this.insulin.toFixed(3);
-            } else {
-                insTmp = this.insulin;
-            }
-            let insText = insTmp + "u";
+            let insText = this.insulin.toFixed(3) + "u";
             insText = insText.replace(".0u", "u");
             treatmentText = treatmentText + insText;
         } else if (this.carbs > 0) {
