@@ -1,4 +1,4 @@
- # zeppos Watchface for Watchdrip for GTR3 Pro
+ # zeppos Watchface for Watchdrip for GTS3
  <p align="center">
  <img src="https://raw.githubusercontent.com/bigdigital/zeppos_watchdrip_timer_wf/5d58da9cf91b96d08a0c451307865db9d05610df/assets/gtr-3-pro/images/preview.png" alt="Watchface preview"/>
  </p>
