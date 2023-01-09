@@ -27,6 +27,9 @@ export class TreatmentData {
     getTreatments() {
         let treatmentText = "";
         if (this.insulin > 0) {
+            if (this.insulin.split(".")[1].length > 3) {
+                this.insulin = this.insulin.toFixed(3)
+            }
             let insText = this.insulin + "u";
             insText = insText.replace(".0u", "u");
             treatmentText = treatmentText + insText;
