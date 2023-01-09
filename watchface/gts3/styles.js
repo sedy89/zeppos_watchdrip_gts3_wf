@@ -323,7 +323,7 @@ export const BG_STATUS_OK_IMG = {
 export const BG_STATUS_HIGH_IMG = {
     x: px(206),
     y: px(68),
-    src: 'watchdrip/bgHight.png',
+    src: 'watchdrip/bgHigh.png',
 };
 
 
@@ -368,6 +368,6 @@ export const BG_HIGH_IMG = {
     y: px(0),
     w: px(DEVICE_WIDTH),
     h: px(DEVICE_HEIGHT),
-    src: img("bg/bgHight_BG.png"),
+    src: img("bg/bgHigh_BG.png"),
     show_level: hmUI.show_level.ONLY_NORMAL
 };
