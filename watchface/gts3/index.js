@@ -16,6 +16,7 @@ import {
     DAYS_TEXT_IMG,
     DIGITAL_TIME_HOUR,
     DIGITAL_TIME_MINUTES,
+    TIME_AM_PM,
     IMG_LOADING_PROGRESS,
     IMG_STATUS_BT_DISCONNECTED,
     IOB_TEXT,
@@ -37,12 +38,13 @@ import {
     BG_LOW_IMG,
     BG_OK_IMG,
     BG_HIGH_IMG,
-    CONST_ACCENT
+    CONST_ACCENT,
+    BG_AOD
 } from "./styles";
 import {BG_FILL_RECT, BG_IMG} from "../../utils/config/styles_global";
 import {PROGRESS_ANGLE_INC, PROGRESS_UPDATE_INTERVAL_MS, TEST_DATA} from "../../utils/config/constants";
 
-let imgBg, imgBg_Low, imgBg_Ok, imgBg_High, digitalClockHour, digitalClockMinutes, watch_battery_prog, watch_battery_prog_low, watch_battery_prog_ok, watch_battery_prog_high, phone_battery_prog,  
+let imgBg_ADO, imgBg, imgBg_Low, imgBg_Ok, imgBg_High, digitalClockHour, digitalClockMinutes, timeAM_PM, watch_battery_prog, watch_battery_prog_low, watch_battery_prog_ok, watch_battery_prog_high, phone_battery_prog,  
     normal_temperature_current_text_img, normalHeartRateTextImg, monthImg, weekImg, dateDayImg, phone_battery_prog_low, phone_battery_prog_ok, phone_battery_prog_high, btDisconnected, normal_weather_image_progress_img_level,
     screenType;
 let bgValTextWidget, bgValTextImgWidget, bgValTimeTextWidget, bgDeltaTextWidget, bgTrendImageWidget, bgStaleLine,
@@ -95,7 +97,7 @@ WatchFace({
     initView() {
         screenType = hmSetting.getScreenType();
         if (screenType === hmSetting.screen_type.AOD) {
-            imgBg = hmUI.createWidget(hmUI.widget.FILL_RECT, BG_FILL_RECT);
+            imgBg_ADO = hmUI.createWidget(hmUI.widget.IMG, BG_AOD);
         } else {
             imgBg = hmUI.createWidget(hmUI.widget.IMG, BG_IMG);
             imgBg.setProperty(hmUI.prop.VISIBLE, true);
@@ -114,6 +116,7 @@ WatchFace({
 
         digitalClockMinutes = hmUI.createWidget(hmUI.widget.IMG_TIME, DIGITAL_TIME_MINUTES);
         
+        timeAM_PM = hmUI.createWidget(hmUI.widget.IMG_TIME, TIME_AM_PM);
         normal_weather_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, WEATHER_IMG_PROG_IMG_LEVEL);
         
         normal_temperature_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, TEMP_CURRENT_TEXT_IMG);
@@ -157,6 +160,13 @@ WatchFace({
             scale_call();
         });
 
+        const widgetDelegate = hmUI.createWidget(hmUI.widget.WIDGET_DELEGATE, {
+            resume_call: (function () {
+                screenType = hmSetting.getScreenType();
+                scale_call();
+            })
+        });
+
         //init watchdrip related widgets
         bgValTextWidget = hmUI.createWidget(hmUI.widget.TEXT, BG_VALUE_NO_DATA_TEXT);
         bgValTextImgWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, BG_VALUE_TEXT_IMG);
@@ -175,14 +185,16 @@ WatchFace({
 
         function scale_call() {
             if (screenType !== hmSetting.screen_type.AOD) {
-                watch_battery_prog.setProperty(hmUI.prop.MORE, getProgByVal(battery.current))
+                watch_battery_prog.setProperty(hmUI.prop.MORE, getProgByVal(battery.current));
                 if (!CONST_ACCENT) {
-                    watch_battery_prog_low.setProperty(hmUI.prop.MORE, getProgByVal(battery.current))
-                    watch_battery_prog_ok.setProperty(hmUI.prop.MORE, getProgByVal(battery.current))
-                    watch_battery_prog_high.setProperty(hmUI.prop.MORE, getProgByVal(battery.current))
+                    watch_battery_prog_low.setProperty(hmUI.prop.MORE, getProgByVal(battery.current));
+                    watch_battery_prog_ok.setProperty(hmUI.prop.MORE, getProgByVal(battery.current));
+                    watch_battery_prog_high.setProperty(hmUI.prop.MORE, getProgByVal(battery.current));
                 }
                 watchBattery.setProperty(hmUI.prop.MORE, { text: battery.current + '%'})
-            } else { watchBattery.setProperty(hmUI.prop.MORE, { text: battery.current + '%'}) }
+            } else { watchBattery.setProperty(hmUI.prop.MORE, { text: battery.current + '%', 
+                                                                x: px(180),
+                                                                y: px(300),}) }
         }
 
         scale_call();
@@ -270,11 +282,12 @@ WatchFace({
         });
 
         let batVal = watchdripData.getStatus().getBatVal();
-        phone_battery_prog.setProperty(hmUI.prop.MORE, getProgByVal(Number(batVal.replace(/%/, ''))))
+        batterie_value = batVal.replace(/%/, '');
+        phone_battery_prog.setProperty(hmUI.prop.MORE, getProgByVal(Number(batterie_value)));
         if (!CONST_ACCENT) {
-            phone_battery_prog_low.setProperty(hmUI.prop.MORE, getProgByVal(Number(batVal.replace(/%/, ''))))
-            phone_battery_prog_ok.setProperty(hmUI.prop.MORE, getProgByVal(Number(batVal.replace(/%/, ''))))
-            phone_battery_prog_high.setProperty(hmUI.prop.MORE, getProgByVal(Number(batVal.replace(/%/, ''))))
+            phone_battery_prog_low.setProperty(hmUI.prop.MORE, getProgByVal(Number(batterie_value)));
+            phone_battery_prog_ok.setProperty(hmUI.prop.MORE, getProgByVal(Number(batterie_value)));
+            phone_battery_prog_high.setProperty(hmUI.prop.MORE, getProgByVal(Number(batterie_value)));
         }
         
         let treatmentObj = watchdripData.getTreatment();
@@ -286,7 +299,6 @@ WatchFace({
             bgStatusLow.setProperty(hmUI.prop.VISIBLE, true);
             bgStatusOk.setProperty(hmUI.prop.VISIBLE, true);
             bgStatusHigh.setProperty(hmUI.prop.VISIBLE, true);
-            progress.setProperty(hmUI.prop.VISIBLE, true);
             bgValTimeTextWidget.setProperty(hmUI.prop.VISIBLE, true);
         }
     },

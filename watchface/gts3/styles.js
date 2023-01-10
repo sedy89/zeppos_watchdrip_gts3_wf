@@ -51,6 +51,16 @@ export const DIGITAL_TIME_MINUTES = {
     minute_array: bigNumArr,
 };
 
+export const TIME_AM_PM = {
+    am_x: px(174),
+    am_y: px(240),
+    am_sc_path: img('bigNum/am.png'),
+    am_en_path: img('bigNum/am.png'),
+    pm_x: px(174),
+    pm_y: px(240),
+    pm_sc_path: img('bigNum/pm.png'),
+    pm_en_path: img('bigNum/pm.png'),
+}
 export const NORMAL_HEART_RATE_TEXT_IMG = {
     x: px(280),
     y: px(18),
@@ -73,6 +83,7 @@ export const MONTH_TEXT_IMG = {
     month_sc_array: monthEnArray,
     month_tc_array: monthEnArray,
     month_en_array: monthEnArray,
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const WEEK_DAYS = {
@@ -81,6 +92,7 @@ export const WEEK_DAYS = {
     week_en: weekEnArray,
     week_tc: weekEnArray,
     week_sc: weekEnArray,
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const DAYS_TEXT_IMG = {
@@ -128,6 +140,7 @@ export const WATCH_BATTERY_PROG = {
     y: px(410),
     w: px(140),
     h: px(7),
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const WATCH_BATTERY_PROG_LOW = {
@@ -136,6 +149,7 @@ export const WATCH_BATTERY_PROG_LOW = {
     y: px(410),
     w: px(140),
     h: px(7),
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const WATCH_BATTERY_PROG_OK = {
@@ -144,6 +158,7 @@ export const WATCH_BATTERY_PROG_OK = {
     y: px(410),
     w: px(140),
     h: px(7),
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const WATCH_BATTERY_PROG_HIGH = {
@@ -152,6 +167,7 @@ export const WATCH_BATTERY_PROG_HIGH = {
     y: px(410),
     w: px(140),
     h: px(7),
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const PHONE_BATTERY_PROG = {
@@ -160,6 +176,7 @@ export const PHONE_BATTERY_PROG = {
     y: px(410),
     w: px(140),
     h: px(7),
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const PHONE_BATTERY_PROG_LOW = {
@@ -168,6 +185,7 @@ export const PHONE_BATTERY_PROG_LOW = {
     y: px(410),
     w: px(140),
     h: px(7),
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const PHONE_BATTERY_PROG_OK = {
@@ -176,6 +194,7 @@ export const PHONE_BATTERY_PROG_OK = {
     y: px(410),
     w: px(140),
     h: px(7),
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const PHONE_BATTERY_PROG_HIGH = {
@@ -184,6 +203,7 @@ export const PHONE_BATTERY_PROG_HIGH = {
     y: px(410),
     w: px(140),
     h: px(7),
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const BG_VALUE_NO_DATA_TEXT = {
@@ -196,7 +216,8 @@ export const BG_VALUE_NO_DATA_TEXT = {
     align_h: hmUI.align.RIGHT,
     align_v: hmUI.align.CENTER_V,
     text_style: hmUI.text_style.NONE,
-    text: 'No data'
+    text: 'No data',
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const BG_VALUE_TEXT_IMG = {
@@ -209,7 +230,8 @@ export const BG_VALUE_TEXT_IMG = {
     font_array: bgNumArr,
     text: '0',
     visible: false,
-    h_space:1
+    h_space:1,
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const BG_TIME_TEXT = {
@@ -258,6 +280,7 @@ export const BG_STALE_IMG = {
     y: px(112),
     src: 'watchdrip/stale.png',
     visible: false,
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const IOB_TEXT = {
@@ -294,6 +317,7 @@ export const PHONE_BATTERY_TEXT = {
     align_h: hmUI.align.RIGHT,
     align_v: hmUI.align.TOP,
     text_style: hmUI.text_style.NONE,
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const WATCH_BATTERY_TEXT = {
@@ -343,6 +367,7 @@ export const IMG_LOADING_PROGRESS = {
     center_x: 20,
     center_y: 20,
     visible: false,
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const BG_LOW_IMG = {
@@ -351,7 +376,6 @@ export const BG_LOW_IMG = {
     w: px(DEVICE_WIDTH),
     h: px(DEVICE_HEIGHT),
     src: img("bg/bgLow_BG.png"),
-    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const BG_OK_IMG = {
@@ -360,7 +384,6 @@ export const BG_OK_IMG = {
     w: px(DEVICE_WIDTH),
     h: px(DEVICE_HEIGHT),
     src: img("bg/bgOk_BG.png"),
-    show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const BG_HIGH_IMG = {
@@ -369,5 +392,12 @@ export const BG_HIGH_IMG = {
     w: px(DEVICE_WIDTH),
     h: px(DEVICE_HEIGHT),
     src: img("bg/bgHigh_BG.png"),
-    show_level: hmUI.show_level.ONLY_NORMAL
+};
+
+export const BG_AOD = {
+    x: px(0),
+    y: px(0),
+    w: px(DEVICE_WIDTH),
+    h: px(DEVICE_HEIGHT),
+    src: img("bg/bg_aod.png"),
 };
