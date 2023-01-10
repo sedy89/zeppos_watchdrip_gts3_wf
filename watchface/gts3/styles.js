@@ -5,6 +5,15 @@ import {DEVICE_HEIGHT, DEVICE_WIDTH} from "../../utils/config/device";
 /*turn on for color schema only*/
 export const CONST_ACCENT = false;
 
+/*turn on to show amount of gramm to neutralize the iob*/
+export const CATCH_IOB = false;
+/*correction factor*/
+export const BZ_E_RATIO = 170;
+/*carbohydrates per unit */
+export const KE_E_RATIO = 16;
+/*goal bg */
+export const DIAB_GOAL = 120;
+
 let bgNumArr = range(10).map((v) => {
     return img(`bgNum/${v}.png`);
 });
@@ -61,6 +70,7 @@ export const TIME_AM_PM = {
     pm_sc_path: img('bigNum/pm.png'),
     pm_en_path: img('bigNum/pm.png'),
 }
+
 export const NORMAL_HEART_RATE_TEXT_IMG = {
     x: px(280),
     y: px(18),
@@ -131,6 +141,7 @@ export const WEATHER_IMG_PROG_IMG_LEVEL = {
     image_length: 29,
     type: hmUI.data_type.WEATHER_CURRENT,
     show_level: hmUI.show_level.ONLY_NORMAL,
+
 };
 
 
@@ -400,4 +411,17 @@ export const BG_AOD = {
     w: px(DEVICE_WIDTH),
     h: px(DEVICE_HEIGHT),
     src: img("bg/bg_aod.png"),
+};
+
+export const GRAMM_VALUE_TEXT_IMG = {
+    x: px(255),
+    y: px(270),
+    w: px(100),
+    h: px(27),
+    color: Colors.white,
+    text_size: px(21),
+    align_h: hmUI.align.RIGHT,
+    align_v: hmUI.align.TOP,
+    text_style: hmUI.text_style.NONE,
+    show_level: hmUI.show_level.ONLY_NORMAL
 };

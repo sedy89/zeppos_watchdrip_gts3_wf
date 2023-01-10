@@ -39,7 +39,12 @@ import {
     BG_OK_IMG,
     BG_HIGH_IMG,
     CONST_ACCENT,
-    BG_AOD
+    GRAMM_VALUE_TEXT_IMG,
+    BG_AOD,
+    BZ_E_RATIO,
+    KE_E_RATIO,
+    DIAB_GOAL,
+    CATCH_IOB
 } from "./styles";
 import {BG_FILL_RECT, BG_IMG} from "../../utils/config/styles_global";
 import {PROGRESS_ANGLE_INC, PROGRESS_UPDATE_INTERVAL_MS, TEST_DATA} from "../../utils/config/constants";
@@ -60,6 +65,23 @@ function initDebug() {
     globalNS.debug = new DebugText();
     debug = globalNS.debug;
     debug.setLines(12);
+}
+
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function calculateGramm(bg_value, iob_string) {
+    let iob = Number(iob_string.replace("IOB:", ""))
+    let bg = Number(bg_value)
+    if (!isNumeric(iob)) {return { text: "No IOB" }}
+    if (!isNumeric(bg)) {return { text: "No BG" }}
+    let ratioUG = parseFloat(1/ KE_E_RATIO)
+    let ratioIntense = parseFloat(1/ BZ_E_RATIO)
+    let result = Math.ceil((iob / ratioUG) + ((ratioIntense * (DIAB_GOAL - bg)) / ratioUG ))
+    return {
+        text: result + "g"
+        }
 }
 
 function getProgByVal(value) {
@@ -120,6 +142,7 @@ WatchFace({
         normal_weather_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, WEATHER_IMG_PROG_IMG_LEVEL);
         
         normal_temperature_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, TEMP_CURRENT_TEXT_IMG);
+        gramm_value_text_img = hmUI.createWidget(hmUI.widget.TEXT, GRAMM_VALUE_TEXT_IMG);
 
         normalHeartRateTextImg = hmUI.createWidget(hmUI.widget.TEXT_IMG, NORMAL_HEART_RATE_TEXT_IMG);
 
@@ -294,8 +317,12 @@ WatchFace({
         iob.setProperty(hmUI.prop.MORE, {
             text: treatmentObj.getPredictIOB()
         });
-
-        if (TEST_DATA){
+	
+        if (CATCH_IOB) {
+            gramm_value_text_img.setProperty(hmUI.prop.MORE, calculateGramm(bgObj.getBGVal(), pumpObj.getPumpIOB()));
+        }
+	
+        if (TEST_DATA) {
             bgStatusLow.setProperty(hmUI.prop.VISIBLE, true);
             bgStatusOk.setProperty(hmUI.prop.VISIBLE, true);
             bgStatusHigh.setProperty(hmUI.prop.VISIBLE, true);
