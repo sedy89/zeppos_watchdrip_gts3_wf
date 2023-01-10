@@ -78,9 +78,10 @@ function calculateGramm(bg_value, iob_string) {
     if (!isNumeric(bg)) {return { text: "No BG" }}
     let ratioUG = parseFloat(1/ KE_E_RATIO)
     let ratioIntense = parseFloat(1/ BZ_E_RATIO)
-    let result = Math.ceil((iob / ratioUG) + ((ratioIntense * (DIAB_GOAL - bg)) / ratioUG ))
+    let result = ((iob / ratioUG) + ((ratioIntense * (DIAB_GOAL - bg)) / ratioUG ))
+    let result_round = Math.ceil(result)
     return {
-        text: result + "g"
+        text: result_round + "g"
         }
 }
 
