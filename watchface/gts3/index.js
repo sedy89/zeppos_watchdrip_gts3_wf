@@ -44,7 +44,8 @@ import {
     BZ_E_RATIO,
     KE_E_RATIO,
     DIAB_GOAL,
-    CATCH_IOB
+    CATCH_IOB,
+    IOB_SIM
 } from "./styles";
 import {BG_FILL_RECT, BG_IMG} from "../../utils/config/styles_global";
 import {PROGRESS_ANGLE_INC, PROGRESS_UPDATE_INTERVAL_MS, TEST_DATA} from "../../utils/config/constants";
@@ -74,15 +75,14 @@ function isNumeric(n) {
 function calculateGramm(bg_value, iob_string) {
     let iob = Number(iob_string.replace("IOB:", ""))
     let bg = Number(bg_value)
-    if (!isNumeric(iob)) {return { text: "No IOB" }}
-    if (!isNumeric(bg)) {return { text: "No BG" }}
+    if (!isNumeric(iob)) {return { text: "" }}
+    if (!isNumeric(bg)) {return { text: "" }}
     let ratioUG = parseFloat(1/ KE_E_RATIO)
     let ratioIntense = parseFloat(1/ BZ_E_RATIO)
     let result = ((iob / ratioUG) + ((ratioIntense * (DIAB_GOAL - bg)) / ratioUG ))
     let result_round = Math.ceil(result)
-    return {
-        text: result_round + "g"
-        }
+    if (result_round < 1) return { text: "" };
+    return { text: result_round + "g" }
 }
 
 function getProgByVal(value) {
@@ -140,9 +140,11 @@ WatchFace({
         digitalClockMinutes = hmUI.createWidget(hmUI.widget.IMG_TIME, DIGITAL_TIME_MINUTES);
         
         timeAM_PM = hmUI.createWidget(hmUI.widget.IMG_TIME, TIME_AM_PM);
+        
         normal_weather_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, WEATHER_IMG_PROG_IMG_LEVEL);
         
         normal_temperature_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, TEMP_CURRENT_TEXT_IMG);
+        
         gramm_value_text_img = hmUI.createWidget(hmUI.widget.TEXT, GRAMM_VALUE_TEXT_IMG);
 
         normalHeartRateTextImg = hmUI.createWidget(hmUI.widget.TEXT_IMG, NORMAL_HEART_RATE_TEXT_IMG);
@@ -156,7 +158,9 @@ WatchFace({
         btDisconnected = hmUI.createWidget(hmUI.widget.IMG_STATUS, IMG_STATUS_BT_DISCONNECTED);
 
         watch_battery_prog = hmUI.createWidget(hmUI.widget.IMG, WATCH_BATTERY_PROG);
+
         watch_battery_prog.setProperty(hmUI.prop.VISIBLE, true);
+
         if (!CONST_ACCENT) {
             watch_battery_prog_low = hmUI.createWidget(hmUI.widget.IMG, WATCH_BATTERY_PROG_LOW);
             watch_battery_prog_ok = hmUI.createWidget(hmUI.widget.IMG, WATCH_BATTERY_PROG_OK);
@@ -168,7 +172,9 @@ WatchFace({
         }
 
         phone_battery_prog = hmUI.createWidget(hmUI.widget.IMG, PHONE_BATTERY_PROG);
+
         phone_battery_prog.setProperty(hmUI.prop.VISIBLE, true);
+
         if (!CONST_ACCENT) {
             phone_battery_prog_low = hmUI.createWidget(hmUI.widget.IMG, PHONE_BATTERY_PROG_LOW);
             phone_battery_prog_ok = hmUI.createWidget(hmUI.widget.IMG, PHONE_BATTERY_PROG_OK);
@@ -314,13 +320,19 @@ WatchFace({
             phone_battery_prog_high.setProperty(hmUI.prop.MORE, getProgByVal(Number(batterie_value)));
         }
         
-        let treatmentObj = watchdripData.getTreatment();
-        iob.setProperty(hmUI.prop.MORE, {
-            text: treatmentObj.getPredictIOB()
-        });
-	
+        let iobValue;
+        if (!IOB_SIM) {
+            let pumpObj = watchdripData.getPump();
+            iobValue = pumpObj.getPumpIOB();
+        } else {
+            let treatmentObj = watchdripData.getTreatment();
+            iobValue = treatmentObj.getPredictIOB();
+        }
+
+        iob.setProperty(hmUI.prop.MORE, { text: iobValue });
+
         if (CATCH_IOB) {
-            gramm_value_text_img.setProperty(hmUI.prop.MORE, calculateGramm(bgObj.getBGVal(), pumpObj.getPumpIOB()));
+            gramm_value_text_img.setProperty(hmUI.prop.MORE, calculateGramm(bgObj.getBGVal(), iobValue));
         }
 	
         if (TEST_DATA) {

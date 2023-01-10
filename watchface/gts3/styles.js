@@ -5,7 +5,10 @@ import {DEVICE_HEIGHT, DEVICE_WIDTH} from "../../utils/config/device";
 /*turn on for color schema only*/
 export const CONST_ACCENT = false;
 
-/*turn on to show amount of gramm to neutralize the iob*/
+/*turn off to use pump insulin information*/
+export const IOB_SIM = true;
+
+/*turn on to show amount of gramm required to neutralize the iob*/
 export const CATCH_IOB = false;
 /*correction factor*/
 export const BZ_E_RATIO = 170;
