@@ -54,7 +54,7 @@ let imgBg_ADO, imgBg, imgBg_Low, imgBg_Ok, imgBg_High, digitalClockHour, digital
     normal_temperature_current_text_img, normalHeartRateTextImg, monthImg, weekImg, dateDayImg, phone_battery_prog_low, phone_battery_prog_ok, phone_battery_prog_high, btDisconnected, normal_weather_image_progress_img_level,
     screenType;
 let bgValTextWidget, bgValTextImgWidget, bgValTimeTextWidget, bgDeltaTextWidget, bgTrendImageWidget, bgStaleLine,
-    phoneBattery, watchBattery, iob, treatment, bgStatusLow, bgStatusOk, bgStatusHigh, progress;
+    phoneBattery, watchBattery, iob, gramm_value_text_img, treatment, bgStatusLow, bgStatusOk, bgStatusHigh, progress;
 
 let globalNS, progressTimer, progressAngle;
 
@@ -79,8 +79,15 @@ function calculateGramm(bg_value, iob_string) {
     if (!isNumeric(bg)) {return { text: "" }}
     let ratioUG = parseFloat(1/ KE_E_RATIO)
     let ratioIntense = parseFloat(1/ BZ_E_RATIO)
-    let result = ((iob / ratioUG) + ((ratioIntense * (DIAB_GOAL - bg)) / ratioUG ))
-    let result_round = Math.ceil(result)
+    let result;
+    if (iob > 0 && bg > DIAB_GOAL) {
+        result = (iob / ratioUG);
+    } else if (iob > 0 && bg < DIAB_GOAL) {
+        result = ((iob / ratioUG) + ((ratioIntense * (DIAB_GOAL - bg)) / ratioUG ));
+    } else {
+        result = ((ratioIntense * (DIAB_GOAL - bg)) / ratioUG);
+    }
+    let result_round = Math.ceil(result);
     if (result_round < 1) return { text: "" };
     return { text: result_round + "g" }
 }
