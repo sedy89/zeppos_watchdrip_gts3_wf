@@ -366,8 +366,8 @@ export const BG_STATUS_HIGH_IMG = {
 
 
 export const IMG_STATUS_BT_DISCONNECTED = {
-    x: px(300),
-    y: px(3),
+    x: px(167),
+    y: px(2),
     src: img('status/bt_disconnected.png'),
     type: hmUI.system_status.DISCONNECT,
     show_level: hmUI.show_level.ONLY_NORMAL,
