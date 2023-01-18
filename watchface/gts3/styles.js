@@ -46,7 +46,7 @@ let dayNumArr = range(10).map((v) => {
 });
 
 export const DIGITAL_TIME_HOUR = {
-    hour_startX: px(19),
+    hour_startX: px(20),
     hour_startY: px(172),
     hour_zero: true,
     hour_space: 8,
@@ -55,7 +55,7 @@ export const DIGITAL_TIME_HOUR = {
 };
 
 export const DIGITAL_TIME_MINUTES = {
-    minute_startX: px(222),
+    minute_startX: px(223),
     minute_startY: px(172),
     minute_zero: true,
     minute_space: 8,
@@ -263,7 +263,7 @@ export const BG_TIME_TEXT = {
 export const BG_DELTA_TEXT = {
     x: px(80),
     y: px(325),
-    w: px(69),
+    w: px(120),
     h: px(45),
     color: Colors.defaultTransparent,
     text_size: px(35),
@@ -374,7 +374,7 @@ export const IMG_STATUS_BT_DISCONNECTED = {
 };
 
 export const IMG_LOADING_PROGRESS = {
-    x: px(170),
+    x: px(177),
     y: px(280),
     src: 'watchdrip/progress.png',
     angle:0,

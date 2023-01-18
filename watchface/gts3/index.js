@@ -347,6 +347,7 @@ WatchFace({
             bgStatusOk.setProperty(hmUI.prop.VISIBLE, true);
             bgStatusHigh.setProperty(hmUI.prop.VISIBLE, true);
             bgValTimeTextWidget.setProperty(hmUI.prop.VISIBLE, true);
+            gramm_value_text_img.setProperty(hmUI.prop.VISIBLE, false);
         }
     },
 
