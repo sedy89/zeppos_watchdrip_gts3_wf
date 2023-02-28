@@ -387,6 +387,7 @@ WatchFace({
         this.initView();
         globalNS.watchdrip = new Watchdrip();
         watchdrip = globalNS.watchdrip;
+        watchdrip.prepare();
         watchdrip.setUpdateValueWidgetCallback(this.updateValuesWidget);
         watchdrip.setUpdateTimesWidgetCallback(this.updateTimesWidget);
         watchdrip.setOnUpdateStartCallback(this.updateStart);
@@ -397,6 +398,7 @@ WatchFace({
     onDestroy() {
         logger.log("wf on destroy invoke");
         watchdrip.destroy();
+        stopLoader();
     },
 
     onShow() {

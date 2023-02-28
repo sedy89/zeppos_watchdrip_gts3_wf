@@ -11,11 +11,11 @@ export const IOB_SIM = true;
 /*turn on to show amount of gramm required to neutralize the iob*/
 export const CATCH_IOB = false;
 /*correction factor*/
-export const BZ_E_RATIO = 170;
+export const BZ_E_RATIO = 200;
 /*carbohydrates per unit */
 export const KE_E_RATIO = 16;
 /*goal bg */
-export const DIAB_GOAL = 120;
+export const DIAB_GOAL = 110;
 
 let bgNumArr = range(10).map((v) => {
     return img(`bgNum/${v}.png`);
