@@ -6,10 +6,10 @@ import {DEVICE_HEIGHT, DEVICE_WIDTH} from "../../utils/config/device";
 export const CONST_ACCENT = false;
 
 /*turn off to use pump insulin information*/
-export const IOB_SIM = true;
+export const IOB_SIM = false;
 
 /*turn on to show amount of gramm required to neutralize the iob*/
-export const CATCH_IOB = false;
+export const CATCH_IOB = true;
 /*correction factor*/
 export const BZ_E_RATIO = 200;
 /*carbohydrates per unit */
@@ -144,7 +144,6 @@ export const WEATHER_IMG_PROG_IMG_LEVEL = {
     image_length: 29,
     type: hmUI.data_type.WEATHER_CURRENT,
     show_level: hmUI.show_level.ONLY_NORMAL,
-
 };
 
 

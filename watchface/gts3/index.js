@@ -308,9 +308,8 @@ WatchFace({
             bgValTextWidget.setProperty(hmUI.prop.VISIBLE, true);
             bgValTextImgWidget.setProperty(hmUI.prop.VISIBLE, false);
         }
-        bgDeltaTextWidget.setProperty(hmUI.prop.MORE, {
-            text: bgObj.delta
-        });
+        
+        bgDeltaTextWidget.setProperty(hmUI.prop.MORE, { text: bgObj.delta });
 
         bgTrendImageWidget.setProperty(hmUI.prop.SRC, bgObj.getArrowResource());
 
@@ -380,19 +379,25 @@ WatchFace({
     },
 
     build() {
-        logger.log("wf on build invoke");
-        globalNS = getGlobal();
-        initDebug();
-        debug.log("build");
-        this.initView();
-        globalNS.watchdrip = new Watchdrip();
-        watchdrip = globalNS.watchdrip;
-        watchdrip.prepare();
-        watchdrip.setUpdateValueWidgetCallback(this.updateValuesWidget);
-        watchdrip.setUpdateTimesWidgetCallback(this.updateTimesWidget);
-        watchdrip.setOnUpdateStartCallback(this.updateStart);
-        watchdrip.setOnUpdateFinishCallback(this.updateFinish);
-        watchdrip.start();
+        try{
+            logger.log("wf on build invoke");
+            globalNS = getGlobal();
+            initDebug();
+            debug.log("build");
+            this.initView();
+            globalNS.watchdrip = new Watchdrip();
+            watchdrip = globalNS.watchdrip;
+            watchdrip.prepare();
+            watchdrip.setUpdateValueWidgetCallback(this.updateValuesWidget);
+            watchdrip.setUpdateTimesWidgetCallback(this.updateTimesWidget);
+            watchdrip.setOnUpdateStartCallback(this.updateStart);
+            watchdrip.setOnUpdateFinishCallback(this.updateFinish);
+            watchdrip.start();
+        }
+        catch (e) {
+            console.log('LifeCycle Error', e)
+            e && e.stack && e.stack.split(/\n/).forEach((i) => console.log('error stack', i))
+        }
     },
 
     onDestroy() {
