@@ -11,7 +11,7 @@ export const IOB_SIM = false;
 /*turn on to show amount of gramm required to neutralize the iob*/
 export const CATCH_IOB = true;
 /*correction factor*/
-export const BZ_E_RATIO = 200;
+export const BZ_E_RATIO = 170;
 /*carbohydrates per unit */
 export const KE_E_RATIO = 16;
 /*goal bg */
