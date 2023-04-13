@@ -282,8 +282,8 @@ export class Watchdrip {
 
     updateWidgets() {
         debug.log("updateWidgets");
-        this.updateValuesWidget()
         this.updateTimesWidget()
+        this.updateValuesWidget()
     }
 
     updateValuesWidget() {

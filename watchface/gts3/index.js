@@ -388,8 +388,9 @@ WatchFace({
             globalNS.watchdrip = new Watchdrip();
             watchdrip = globalNS.watchdrip;
             watchdrip.prepare();
-            watchdrip.setUpdateValueWidgetCallback(this.updateValuesWidget);
+            
             watchdrip.setUpdateTimesWidgetCallback(this.updateTimesWidget);
+            watchdrip.setUpdateValueWidgetCallback(this.updateValuesWidget);
             watchdrip.setOnUpdateStartCallback(this.updateStart);
             watchdrip.setOnUpdateFinishCallback(this.updateFinish);
             //graph configuration
