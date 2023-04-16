@@ -2,6 +2,7 @@ import {DebugText} from "../../shared/debug";
 import {Watchdrip} from "../../utils/watchdrip/watchdrip";
 import {WatchdripData} from "../../utils/watchdrip/watchdrip-data";
 import {getGlobal} from "../../shared/global";
+import {Colors} from "../../utils/config/constants";
 import {
     BG_DELTA_TEXT,
     BG_STALE_IMG,
@@ -24,35 +25,24 @@ import {
     PHONE_BATTERY_TEXT,
     WATCH_BATTERY_TEXT,
     WATCH_BATTERY_PROG,
-    WATCH_BATTERY_PROG_LOW,
-    WATCH_BATTERY_PROG_OK,
-    WATCH_BATTERY_PROG_HIGH,
     PHONE_BATTERY_PROG,
-    PHONE_BATTERY_PROG_LOW,
-    PHONE_BATTERY_PROG_OK,
-    PHONE_BATTERY_PROG_HIGH,
     TREATMENT_TEXT,
     WEEK_DAYS,
     TEMP_CURRENT_TEXT_IMG,
     WEATHER_IMG_PROG_IMG_LEVEL,
-    BG_LOW_IMG,
-    BG_OK_IMG,
-    BG_HIGH_IMG,
-    CONST_ACCENT,
+    BG_RECT,
     GRAMM_VALUE_TEXT_IMG,
-    BG_AOD,
     BZ_E_RATIO,
     KE_E_RATIO,
     DIAB_GOAL,
     CATCH_IOB,
     IOB_SIM
 } from "./styles";
-import {BG_FILL_RECT, BG_IMG} from "../../utils/config/styles_global";
+import {BG_IMG} from "../../utils/config/styles_global";
+import {PointStyle} from "../../utils/watchdrip/graph/pointStyle";
 import {PROGRESS_ANGLE_INC, PROGRESS_UPDATE_INTERVAL_MS, TEST_DATA} from "../../utils/config/constants";
 
-let imgBg_ADO, imgBg, imgBg_Low, imgBg_Ok, imgBg_High, digitalClockHour, digitalClockMinutes, timeAM_PM, watch_battery_prog, watch_battery_prog_low, watch_battery_prog_ok, watch_battery_prog_high, phone_battery_prog,  
-    normal_temperature_current_text_img, normalHeartRateTextImg, monthImg, weekImg, dateDayImg, phone_battery_prog_low, phone_battery_prog_ok, phone_battery_prog_high, btDisconnected, normal_weather_image_progress_img_level,
-    screenType;
+let imgBg, bg_rect, watch_battery_prog, phone_battery_prog, screenType;
 let bgValTextWidget, bgValTextImgWidget, bgValTimeTextWidget, bgDeltaTextWidget, bgTrendImageWidget, bgStaleLine,
     phoneBattery, watchBattery, iob, gramm_value_text_img, treatment, bgStatusLow, bgStatusOk, bgStatusHigh, progress;
 
@@ -92,12 +82,33 @@ function calculateGramm(bg_value, iob_string) {
     return { text: result_round + "g" }
 }
 
-function getProgByVal(value) {
-    let rate = 140 / 100;
+function getPropsByVal(value, view) {
+    let rate = view.w / 100;
     let progress = rate * value;
     return {
-        w: progress
+            x:view.x,
+            y:view.y,
+            h:view.h,
+            w:progress
+           }
+}
+
+function setColorOfView(bgObj, view) {
+    nextColor=Colors.accentHigh
+    if (bgObj.isHigh) {
+        nextColor=Colors.accentHigh
+    } else if (bgObj.isLow) {
+        nextColor=Colors.accentLow
+    } else {
+        nextColor=Colors.accentOk
     }
+    return {
+        x:view.x,
+        y:view.y,
+        h:view.h,
+        w:view.w,
+        color:nextColor
+       }
 }
 
 function startLoader() {
@@ -126,21 +137,12 @@ function stopLoader() {
 WatchFace({
     initView() {
         screenType = hmSetting.getScreenType();
-        if (screenType === hmSetting.screen_type.AOD) {
-            imgBg_ADO = hmUI.createWidget(hmUI.widget.IMG, BG_AOD);
-        } else {
-            imgBg = hmUI.createWidget(hmUI.widget.IMG, BG_IMG);
-            imgBg.setProperty(hmUI.prop.VISIBLE, true);
-            if (!CONST_ACCENT) {
-                imgBg_Low = hmUI.createWidget(hmUI.widget.IMG, BG_LOW_IMG);
-                imgBg_Ok = hmUI.createWidget(hmUI.widget.IMG, BG_OK_IMG);
-                imgBg_High = hmUI.createWidget(hmUI.widget.IMG, BG_HIGH_IMG);
 
-                imgBg_Low.setProperty(hmUI.prop.VISIBLE, false);
-                imgBg_Ok.setProperty(hmUI.prop.VISIBLE, false);
-                imgBg_High.setProperty(hmUI.prop.VISIBLE, false);
-            }
-        }
+        bg_rect = hmUI.createWidget(hmUI.widget.FILL_RECT, BG_RECT);
+
+        imgBg = hmUI.createWidget(hmUI.widget.IMG, BG_IMG)
+
+        imgBg.setProperty(hmUI.prop.VISIBLE, true);
 
         digitalClockHour = hmUI.createWidget(hmUI.widget.IMG_TIME, DIGITAL_TIME_HOUR);
 
@@ -164,33 +166,9 @@ WatchFace({
 
         btDisconnected = hmUI.createWidget(hmUI.widget.IMG_STATUS, IMG_STATUS_BT_DISCONNECTED);
 
-        watch_battery_prog = hmUI.createWidget(hmUI.widget.IMG, WATCH_BATTERY_PROG);
+        watch_battery_prog = hmUI.createWidget(hmUI.widget.FILL_RECT, WATCH_BATTERY_PROG);
 
-        watch_battery_prog.setProperty(hmUI.prop.VISIBLE, true);
-
-        if (!CONST_ACCENT) {
-            watch_battery_prog_low = hmUI.createWidget(hmUI.widget.IMG, WATCH_BATTERY_PROG_LOW);
-            watch_battery_prog_ok = hmUI.createWidget(hmUI.widget.IMG, WATCH_BATTERY_PROG_OK);
-            watch_battery_prog_high = hmUI.createWidget(hmUI.widget.IMG, WATCH_BATTERY_PROG_HIGH);
-
-            watch_battery_prog_low.setProperty(hmUI.prop.VISIBLE, false);
-            watch_battery_prog_ok.setProperty(hmUI.prop.VISIBLE, false);
-            watch_battery_prog_high.setProperty(hmUI.prop.VISIBLE, false);
-        }
-
-        phone_battery_prog = hmUI.createWidget(hmUI.widget.IMG, PHONE_BATTERY_PROG);
-
-        phone_battery_prog.setProperty(hmUI.prop.VISIBLE, true);
-
-        if (!CONST_ACCENT) {
-            phone_battery_prog_low = hmUI.createWidget(hmUI.widget.IMG, PHONE_BATTERY_PROG_LOW);
-            phone_battery_prog_ok = hmUI.createWidget(hmUI.widget.IMG, PHONE_BATTERY_PROG_OK);
-            phone_battery_prog_high = hmUI.createWidget(hmUI.widget.IMG, PHONE_BATTERY_PROG_HIGH);
-
-            phone_battery_prog_low.setProperty(hmUI.prop.VISIBLE, false);
-            phone_battery_prog_ok.setProperty(hmUI.prop.VISIBLE, false);
-            phone_battery_prog_high.setProperty(hmUI.prop.VISIBLE, false);
-        }
+        phone_battery_prog = hmUI.createWidget(hmUI.widget.FILL_RECT, PHONE_BATTERY_PROG);
 
         const battery = hmSensor.createSensor(hmSensor.id.BATTERY);
         battery.addEventListener(hmSensor.event.CHANGE, function () {
@@ -222,12 +200,7 @@ WatchFace({
 
         function scale_call() {
             if (screenType !== hmSetting.screen_type.AOD) {
-                watch_battery_prog.setProperty(hmUI.prop.MORE, getProgByVal(battery.current));
-                if (!CONST_ACCENT) {
-                    watch_battery_prog_low.setProperty(hmUI.prop.MORE, getProgByVal(battery.current));
-                    watch_battery_prog_ok.setProperty(hmUI.prop.MORE, getProgByVal(battery.current));
-                    watch_battery_prog_high.setProperty(hmUI.prop.MORE, getProgByVal(battery.current));
-                }
+                watch_battery_prog.setProperty(hmUI.prop.MORE, getPropsByVal(battery.current, WATCH_BATTERY_PROG));
                 watchBattery.setProperty(hmUI.prop.MORE, { text: battery.current + '%'})
             } else { watchBattery.setProperty(hmUI.prop.MORE, { text: battery.current + '%', 
                                                                 x: px(180),
@@ -258,48 +231,26 @@ WatchFace({
         bgStatusOk.setProperty(hmUI.prop.VISIBLE, false);
         bgStatusHigh.setProperty(hmUI.prop.VISIBLE, false);
 
-        if (!CONST_ACCENT) {
-            imgBg.setProperty(hmUI.prop.VISIBLE, false);
-            imgBg_Low.setProperty(hmUI.prop.VISIBLE, false);
-            imgBg_Ok.setProperty(hmUI.prop.VISIBLE, false);
-            imgBg_High.setProperty(hmUI.prop.VISIBLE, false);
-
-            watch_battery_prog.setProperty(hmUI.prop.VISIBLE, false);
-            watch_battery_prog_low.setProperty(hmUI.prop.VISIBLE, false);
-            watch_battery_prog_ok.setProperty(hmUI.prop.VISIBLE, false);
-            watch_battery_prog_high.setProperty(hmUI.prop.VISIBLE, false);
-
-            phone_battery_prog.setProperty(hmUI.prop.VISIBLE, false);
-            phone_battery_prog_low.setProperty(hmUI.prop.VISIBLE, false);
-            phone_battery_prog_ok.setProperty(hmUI.prop.VISIBLE, false);
-            phone_battery_prog_high.setProperty(hmUI.prop.VISIBLE, false);
-        }
-
         if (bgObj.isHasData()) {
             if (bgObj.isHigh) {
                 bgStatusHigh.setProperty(hmUI.prop.VISIBLE, true);
-                if (!CONST_ACCENT) {
-                    imgBg_High.setProperty(hmUI.prop.VISIBLE, true);
-                    phone_battery_prog_high.setProperty(hmUI.prop.VISIBLE, true);
-                    watch_battery_prog_high.setProperty(hmUI.prop.VISIBLE, true);
-                }
             } else if (bgObj.isLow) {
                 bgStatusLow.setProperty(hmUI.prop.VISIBLE, true);
-                if (!CONST_ACCENT) {
-                    imgBg_Low.setProperty(hmUI.prop.VISIBLE, true);
-                    watch_battery_prog_low.setProperty(hmUI.prop.VISIBLE, true);
-                    phone_battery_prog_low.setProperty(hmUI.prop.VISIBLE, true);
-                }
             } else {
                 bgStatusOk.setProperty(hmUI.prop.VISIBLE, true);
-                if (!CONST_ACCENT) {
-                    imgBg_Ok.setProperty(hmUI.prop.VISIBLE, true);
-                    watch_battery_prog_ok.setProperty(hmUI.prop.VISIBLE, true);
-                    phone_battery_prog_ok.setProperty(hmUI.prop.VISIBLE, true);
-                }
             }
+            watch_battery_prog.setProperty(hmUI.prop.MORE, setColorOfView(bgObj, WATCH_BATTERY_PROG));
+            phone_battery_prog.setProperty(hmUI.prop.MORE, setColorOfView(bgObj, PHONE_BATTERY_PROG));
+            bg_rect.setProperty(hmUI.prop.MORE, setColorOfView(bgObj, BG_RECT));
         }
 
+        let batVal = watchdripData.getStatus().getBatVal();
+        phoneBattery.setProperty(hmUI.prop.MORE, {
+            text: batVal
+        });
+        batterie_value = batVal.replace(/%/, '');
+        phone_battery_prog.setProperty(hmUI.prop.MORE, getPropsByVal(batterie_value, PHONE_BATTERY_PROG));
+        
         if (bgObj.isHasData()) {
             bgValTextImgWidget.setProperty(hmUI.prop.TEXT, bgObj.getBGVal());
             bgValTextImgWidget.setProperty(hmUI.prop.VISIBLE, true);
@@ -312,19 +263,6 @@ WatchFace({
         bgDeltaTextWidget.setProperty(hmUI.prop.MORE, { text: bgObj.delta });
 
         bgTrendImageWidget.setProperty(hmUI.prop.SRC, bgObj.getArrowResource());
-
-        phoneBattery.setProperty(hmUI.prop.MORE, {
-            text: watchdripData.getStatus().getBatVal()
-        });
-
-        let batVal = watchdripData.getStatus().getBatVal();
-        batterie_value = batVal.replace(/%/, '');
-        phone_battery_prog.setProperty(hmUI.prop.MORE, getProgByVal(Number(batterie_value)));
-        if (!CONST_ACCENT) {
-            phone_battery_prog_low.setProperty(hmUI.prop.MORE, getProgByVal(Number(batterie_value)));
-            phone_battery_prog_ok.setProperty(hmUI.prop.MORE, getProgByVal(Number(batterie_value)));
-            phone_battery_prog_high.setProperty(hmUI.prop.MORE, getProgByVal(Number(batterie_value)));
-        }
         
         let iobValue;
         if (!IOB_SIM) {
@@ -405,7 +343,7 @@ WatchFace({
             //lineStyles['lineLow'] = new PointStyle("", LINE_SIZE);
             //lineStyles['lineHigh'] = new PointStyle("", LINE_SIZE);
             //lineStyles['treatment'] = new PointStyle(TREATMENT_POINT_SIZE, TREATMENT_POINT_SIZE);
-            //watchdrip.createGraph(100,200,300,200, lineStyles);
+            //watchdrip.createGraph(100,250,300,100, lineStyles);
             watchdrip.start();
         }
         catch (e) {

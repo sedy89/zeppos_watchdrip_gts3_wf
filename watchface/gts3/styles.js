@@ -2,9 +2,6 @@ import {img,range} from "../../utils/helper";
 import {Colors} from "../../utils/config/constants";
 import {DEVICE_HEIGHT, DEVICE_WIDTH} from "../../utils/config/device";
 
-/*turn on for color schema only*/
-export const CONST_ACCENT = false;
-
 /*turn off to use pump insulin information*/
 export const IOB_SIM = false;
 
@@ -88,7 +85,7 @@ export const NORMAL_HEART_RATE_TEXT_IMG = {
 
 export const MONTH_TEXT_IMG = {
     month_startX: px(51),
-    month_startY: px(120),
+    month_startY: px(108),
     month_zero: 1,
     month_space: 1,
     month_align: hmUI.align.LEFT,
@@ -101,7 +98,7 @@ export const MONTH_TEXT_IMG = {
 
 export const WEEK_DAYS = {
     x: px(51),
-    y: px(87),
+    y: px(79),
     week_en: weekEnArray,
     week_tc: weekEnArray,
     week_sc: weekEnArray,
@@ -110,7 +107,7 @@ export const WEEK_DAYS = {
 
 export const DAYS_TEXT_IMG = {
     day_startX: px(127),
-    day_startY: px(106),
+    day_startY: px(98),
     day_zero: 1,
     day_space: 1,
     day_align: hmUI.align.LEFT,
@@ -148,70 +145,18 @@ export const WEATHER_IMG_PROG_IMG_LEVEL = {
 
 
 export const WATCH_BATTERY_PROG = {
-    src: img('status/battery.png'),
     x: px(231),
     y: px(410),
     w: px(140),
     h: px(7),
-    show_level: hmUI.show_level.ONLY_NORMAL
-};
-
-export const WATCH_BATTERY_PROG_LOW = {
-    src: img('status/battery_low.png'),
-    x: px(231),
-    y: px(410),
-    w: px(140),
-    h: px(7),
-    show_level: hmUI.show_level.ONLY_NORMAL
-};
-
-export const WATCH_BATTERY_PROG_OK = {
-    src: img('status/battery_ok.png'),
-    x: px(231),
-    y: px(410),
-    w: px(140),
-    h: px(7),
-    show_level: hmUI.show_level.ONLY_NORMAL
-};
-
-export const WATCH_BATTERY_PROG_HIGH = {
-    src: img('status/battery_high.png'),
-    x: px(231),
-    y: px(410),
-    w: px(140),
-    h: px(7),
+    radius:5,
+    color: Colors.defaultTransparent,
     show_level: hmUI.show_level.ONLY_NORMAL
 };
 
 export const PHONE_BATTERY_PROG = {
-    src: img('status/battery.png'),
-    x: px(20),
-    y: px(410),
-    w: px(140),
-    h: px(7),
-    show_level: hmUI.show_level.ONLY_NORMAL
-};
-
-export const PHONE_BATTERY_PROG_LOW = {
-    src: img('status/battery_low.png'),
-    x: px(20),
-    y: px(410),
-    w: px(140),
-    h: px(7),
-    show_level: hmUI.show_level.ONLY_NORMAL
-};
-
-export const PHONE_BATTERY_PROG_OK = {
-    src: img('status/battery_ok.png'),
-    x: px(20),
-    y: px(410),
-    w: px(140),
-    h: px(7),
-    show_level: hmUI.show_level.ONLY_NORMAL
-};
-
-export const PHONE_BATTERY_PROG_HIGH = {
-    src: img('status/battery_high.png'),
+    radius:5,
+    color: Colors.defaultTransparent,
     x: px(20),
     y: px(410),
     w: px(140),
@@ -351,6 +296,13 @@ export const BG_STATUS_LOW_IMG = {
     src: 'watchdrip/bgLow.png',
 };
 
+export const BG_RECT = {
+    x: px(0),
+    y: px(0),
+    w: px(DEVICE_WIDTH),
+    h: px(DEVICE_HEIGHT),
+    color: Colors.defaultTransparent,
+}
 export const BG_STATUS_OK_IMG = {
     x: px(346),
     y: px(87),
@@ -362,7 +314,6 @@ export const BG_STATUS_HIGH_IMG = {
     y: px(68),
     src: 'watchdrip/bgHigh.png',
 };
-
 
 export const IMG_STATUS_BT_DISCONNECTED = {
     x: px(167),
@@ -381,38 +332,6 @@ export const IMG_LOADING_PROGRESS = {
     center_y: 20,
     visible: false,
     show_level: hmUI.show_level.ONLY_NORMAL
-};
-
-export const BG_LOW_IMG = {
-    x: px(0),
-    y: px(0),
-    w: px(DEVICE_WIDTH),
-    h: px(DEVICE_HEIGHT),
-    src: img("bg/bgLow_BG.png"),
-};
-
-export const BG_OK_IMG = {
-    x: px(0),
-    y: px(0),
-    w: px(DEVICE_WIDTH),
-    h: px(DEVICE_HEIGHT),
-    src: img("bg/bgOk_BG.png"),
-};
-
-export const BG_HIGH_IMG = {
-    x: px(0),
-    y: px(0),
-    w: px(DEVICE_WIDTH),
-    h: px(DEVICE_HEIGHT),
-    src: img("bg/bgHigh_BG.png"),
-};
-
-export const BG_AOD = {
-    x: px(0),
-    y: px(0),
-    w: px(DEVICE_WIDTH),
-    h: px(DEVICE_HEIGHT),
-    src: img("bg/bg_aod.png"),
 };
 
 export const GRAMM_VALUE_TEXT_IMG = {
