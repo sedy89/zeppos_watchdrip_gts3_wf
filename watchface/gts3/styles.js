@@ -8,9 +8,9 @@ export const IOB_SIM = false;
 /*turn on to show amount of gramm required to neutralize the iob*/
 export const CATCH_IOB = true;
 /*correction factor*/
-export const BZ_E_RATIO = 170;
+export const BZ_E_RATIO = 160;
 /*carbohydrates per unit */
-export const KE_E_RATIO = 16;
+export const KE_E_RATIO = 15;
 /*goal bg */
 export const DIAB_GOAL = 110;
 
@@ -43,8 +43,8 @@ let dayNumArr = range(10).map((v) => {
 });
 
 export const DIGITAL_TIME_HOUR = {
-    hour_startX: px(20),
-    hour_startY: px(172),
+    hour_startX: px(19),
+    hour_startY: px(123),
     hour_zero: true,
     hour_space: 8,
     hour_align: hmUI.align.CENTER_H,
@@ -53,7 +53,7 @@ export const DIGITAL_TIME_HOUR = {
 
 export const DIGITAL_TIME_MINUTES = {
     minute_startX: px(223),
-    minute_startY: px(172),
+    minute_startY: px(123),
     minute_zero: true,
     minute_space: 8,
     minute_align: hmUI.align.CENTER_H,
@@ -62,11 +62,11 @@ export const DIGITAL_TIME_MINUTES = {
 
 export const TIME_AM_PM = {
     am_x: px(174),
-    am_y: px(240),
+    am_y: px(200),
     am_sc_path: img('bigNum/am.png'),
     am_en_path: img('bigNum/am.png'),
     pm_x: px(174),
-    pm_y: px(240),
+    pm_y: px(200),
     pm_sc_path: img('bigNum/pm.png'),
     pm_en_path: img('bigNum/pm.png'),
 }
@@ -85,7 +85,7 @@ export const NORMAL_HEART_RATE_TEXT_IMG = {
 
 export const MONTH_TEXT_IMG = {
     month_startX: px(51),
-    month_startY: px(108),
+    month_startY: px(82),
     month_zero: 1,
     month_space: 1,
     month_align: hmUI.align.LEFT,
@@ -98,7 +98,7 @@ export const MONTH_TEXT_IMG = {
 
 export const WEEK_DAYS = {
     x: px(51),
-    y: px(79),
+    y: px(54),
     week_en: weekEnArray,
     week_tc: weekEnArray,
     week_sc: weekEnArray,
@@ -107,7 +107,7 @@ export const WEEK_DAYS = {
 
 export const DAYS_TEXT_IMG = {
     day_startX: px(127),
-    day_startY: px(98),
+    day_startY: px(71),
     day_zero: 1,
     day_space: 1,
     day_align: hmUI.align.LEFT,
@@ -116,7 +116,6 @@ export const DAYS_TEXT_IMG = {
     day_tc_array: dayNumArr,
     day_en_array: dayNumArr,
 };
-
 
 export const TEMP_CURRENT_TEXT_IMG = {
     x: 100,
@@ -143,7 +142,6 @@ export const WEATHER_IMG_PROG_IMG_LEVEL = {
     show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
-
 export const WATCH_BATTERY_PROG = {
     x: px(231),
     y: px(410),
@@ -166,11 +164,11 @@ export const PHONE_BATTERY_PROG = {
 
 export const BG_VALUE_NO_DATA_TEXT = {
     x: px(220),
-    y: px(87),
+    y: px(60),
     w: px(108),
     h: px(50),
     color: Colors.white,
-    text_size: px(42),
+    text_size: px(30),
     align_h: hmUI.align.RIGHT,
     align_v: hmUI.align.CENTER_V,
     text_style: hmUI.text_style.NONE,
@@ -179,9 +177,10 @@ export const BG_VALUE_NO_DATA_TEXT = {
 };
 
 export const BG_VALUE_TEXT_IMG = {
-    x: px(220),
-    y: px(87),
-    w: px(108),
+    x: px(225),
+    y: px(68),
+    w: px(60),
+    h: px(50),
     color: Colors.white,
     align_h: hmUI.align.CENTER_H,
     dot_image: img('bgNum/d.png'),
@@ -192,41 +191,52 @@ export const BG_VALUE_TEXT_IMG = {
     show_level: hmUI.show_level.ONLY_NORMAL
 };
 
+export const BG_TREND_IMAGE = {
+    src: 'watchdrip/arrows/None.png',
+    x: px(300),
+    y: px(68),
+    w: px(40),
+    h: px(40),
+};
 export const BG_TIME_TEXT = {
-    x: px(35),
-    y: px(290),
+    x: px(19),
+    y: px(340),
     w: px(130),
     h: px(45),
     color: Colors.defaultTransparent,
-    text_size: px(35),
-    align_h: hmUI.align.CENTER_H,
+    text_size: px(30),
+    align_h: hmUI.align.LEFT,
     align_v: hmUI.align.TOP,
     text_style: hmUI.text_style.NONE,
 };
 
 export const BG_DELTA_TEXT = {
-    x: px(80),
-    y: px(325),
-    w: px(120),
+    x: px(150),
+    y: px(340),
+    w: px(40),
     h: px(45),
     color: Colors.defaultTransparent,
-    text_size: px(35),
+    text_size: px(30),
     align_h: hmUI.align.CENTER_H,
     align_v: hmUI.align.TOP,
     text_style: hmUI.text_style.NONE,
-};  
+};
 
-export const BG_TREND_IMAGE = {
-    src: 'watchdrip/arrows/None.png',
-    x: px(250),
-    y: px(290),
-    w: px(62),
-    h: px(65),
+export const IOB_TEXT = {
+    x: px(190),
+    y: px(340),
+    w: px(110),
+    h: px(40),
+    color: Colors.white,
+    text_size: px(30),
+    align_h: hmUI.align.RIGHT,
+    align_v: hmUI.align.TOP,
+    text_style: hmUI.text_style.NONE,
 };
 
 export const BG_STALE_RECT = {
     x: px(215),
-    y: px(110),
+    y: px(90),
     w: px(120),
     h: px(4),
     color: Colors.white,
@@ -235,22 +245,28 @@ export const BG_STALE_RECT = {
 
 export const BG_STALE_IMG = {
     x: px(220),
-    y: px(112),
+    y: px(82),
     src: 'watchdrip/stale.png',
     visible: false,
     show_level: hmUI.show_level.ONLY_NORMAL
 };
 
-export const IOB_TEXT = {
-    x: px(175),
-    y: px(332),
-    w: px(200),
-    h: px(40),
-    color: Colors.white,
-    text_size: px(30),
-    align_h: hmUI.align.CENTER_H,
-    align_v: hmUI.align.TOP,
-    text_style: hmUI.text_style.NONE,
+export const BG_STATUS_LOW_IMG = {
+    x: px(206),
+    y: px(105),
+    src: 'watchdrip/bgLow.png',
+};
+
+export const BG_STATUS_OK_IMG = {
+    x: px(347),
+    y: px(75),
+    src: 'watchdrip/bgOk.png',
+};
+
+export const BG_STATUS_HIGH_IMG = {
+    x: px(206),
+    y: px(58),
+    src: 'watchdrip/bgHigh.png',
 };
 
 export const TREATMENT_TEXT = {
@@ -290,12 +306,6 @@ export const WATCH_BATTERY_TEXT = {
     text_style: hmUI.text_style.NONE,
 };
 
-export const BG_STATUS_LOW_IMG = {
-    x: px(206),
-    y: px(145),
-    src: 'watchdrip/bgLow.png',
-};
-
 export const BG_RECT = {
     x: px(0),
     y: px(0),
@@ -303,17 +313,6 @@ export const BG_RECT = {
     h: px(DEVICE_HEIGHT),
     color: Colors.defaultTransparent,
 }
-export const BG_STATUS_OK_IMG = {
-    x: px(346),
-    y: px(87),
-    src: 'watchdrip/bgOk.png',
-};
-
-export const BG_STATUS_HIGH_IMG = {
-    x: px(206),
-    y: px(68),
-    src: 'watchdrip/bgHigh.png',
-};
 
 export const IMG_STATUS_BT_DISCONNECTED = {
     x: px(167),
@@ -335,14 +334,12 @@ export const IMG_LOADING_PROGRESS = {
 };
 
 export const GRAMM_VALUE_TEXT_IMG = {
-    x: px(255),
-    y: px(270),
+    x: px(330),
+    y: px(320),
     w: px(100),
     h: px(27),
     color: Colors.white,
     text_size: px(21),
-    align_h: hmUI.align.RIGHT,
-    align_v: hmUI.align.TOP,
     text_style: hmUI.text_style.NONE,
     show_level: hmUI.show_level.ONLY_NORMAL
 };
