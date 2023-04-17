@@ -291,6 +291,8 @@ WatchFace({
             bgStatusHigh.setProperty(hmUI.prop.VISIBLE, true);
             bgValTimeTextWidget.setProperty(hmUI.prop.VISIBLE, true);
             gramm_value_text_img.setProperty(hmUI.prop.VISIBLE, false);
+            iob.setProperty(hmUI.prop.MORE, { text: "IOB: 1.1" });
+            bgDeltaTextWidget.setProperty(hmUI.prop.MORE, { text: "+15" });
         }
     },
 
@@ -311,6 +313,9 @@ WatchFace({
         let treatmentsText = treatmentObj.getTreatments();
         if (treatmentsText !== "") {
             treatmentsText = treatmentsText + " " + watchdripData.getTimeAgo(treatmentObj.time);
+        }
+        if (TEST_DATA) {
+            treatmentsText="1.2U at 09:32";
         }
         treatment.setProperty(hmUI.prop.MORE, {
             text: treatmentsText
@@ -348,7 +353,7 @@ WatchFace({
             lineStyles['lineLow'] = new PointStyle("", LINE_SIZE);
             lineStyles['lineHigh'] = new PointStyle("", LINE_SIZE);
             lineStyles['treatment'] = new PointStyle(TREATMENT_POINT_SIZE, TREATMENT_POINT_SIZE);
-            watchdrip.createGraph(24,220,330,135, lineStyles);
+            watchdrip.createGraph(24,222,330,133, lineStyles);
             watchdrip.start();
         }
         catch (e) {

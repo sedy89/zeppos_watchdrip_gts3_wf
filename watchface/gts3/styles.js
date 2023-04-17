@@ -2,7 +2,7 @@ import {img,range} from "../../utils/helper";
 import {Colors} from "../../utils/config/constants";
 import {DEVICE_HEIGHT, DEVICE_WIDTH} from "../../utils/config/device";
 
-/*turn off to use pump insulin information*/
+/*disable this parameter to use pump insulin data*/
 export const IOB_SIM = false;
 
 /*turn on to show amount of gramm required to neutralize the iob*/
