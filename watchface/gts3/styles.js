@@ -179,7 +179,7 @@ export const BG_VALUE_NO_DATA_TEXT = {
 
 export const BG_VALUE_TEXT_IMG = {
     x: px(225),
-    y: px(68),
+    y: px(69),
     w: px(60),
     h: px(50),
     color: Colors.white,
@@ -195,7 +195,7 @@ export const BG_VALUE_TEXT_IMG = {
 export const BG_TREND_IMAGE = {
     src: 'watchdrip/arrows/None.png',
     x: px(300),
-    y: px(68),
+    y: px(67),
     w: px(40),
     h: px(40),
     show_level: hmUI.show_level.ONLY_NORMAL
@@ -240,8 +240,8 @@ export const IOB_TEXT = {
 };
 
 export const BG_STALE_RECT = {
-    x: px(215),
-    y: px(90),
+    x: px(210),
+    y: px(91),
     w: px(120),
     h: px(4),
     color: Colors.white,
@@ -250,8 +250,8 @@ export const BG_STALE_RECT = {
 };
 
 export const BG_STALE_IMG = {
-    x: px(220),
-    y: px(82),
+    x: px(218),
+    y: px(83),
     src: 'watchdrip/stale.png',
     visible: false,
     show_level: hmUI.show_level.ONLY_NORMAL
