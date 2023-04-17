@@ -38,7 +38,7 @@ import {
     CATCH_IOB,
     IOB_SIM
 } from "./styles";
-import {BG_IMG} from "../../utils/config/styles_global";
+import {BG_FILL_RECT, BG_IMG, BG_IMG_AOD} from "../../utils/config/styles_global";
 import {PointStyle} from "../../utils/watchdrip/graph/pointStyle";
 import {PROGRESS_ANGLE_INC, PROGRESS_UPDATE_INTERVAL_MS, TEST_DATA} from "../../utils/config/constants";
 
@@ -137,10 +137,14 @@ function stopLoader() {
 WatchFace({
     initView() {
         screenType = hmSetting.getScreenType();
-
-        bg_rect = hmUI.createWidget(hmUI.widget.FILL_RECT, BG_RECT);
-
-        imgBg = hmUI.createWidget(hmUI.widget.IMG, BG_IMG)
+        if (screenType === hmSetting.screen_type.AOD) {
+            bg_rect_aod = hmUI.createWidget(hmUI.widget.FILL_RECT, BG_FILL_RECT);
+            imgBg = hmUI.createWidget(hmUI.widget.IMG, BG_IMG_AOD)
+            
+        } else {
+            bg_rect = hmUI.createWidget(hmUI.widget.FILL_RECT, BG_RECT);
+            imgBg = hmUI.createWidget(hmUI.widget.IMG, BG_IMG)
+        }
 
         imgBg.setProperty(hmUI.prop.VISIBLE, true);
 
@@ -202,9 +206,11 @@ WatchFace({
             if (screenType !== hmSetting.screen_type.AOD) {
                 watch_battery_prog.setProperty(hmUI.prop.MORE, getPropsByVal(battery.current, WATCH_BATTERY_PROG));
                 watchBattery.setProperty(hmUI.prop.MORE, { text: battery.current + '%'})
-            } else { watchBattery.setProperty(hmUI.prop.MORE, { text: battery.current + '%', 
+            } else { 
+                watchBattery.setProperty(hmUI.prop.MORE, { text: battery.current + '%', 
                                                                 x: px(180),
-                                                                y: px(300),}) }
+                                                                y: px(300),}) 
+            }
         }
         stopLoader();
         scale_call();
@@ -306,7 +312,6 @@ WatchFace({
         if (treatmentsText !== "") {
             treatmentsText = treatmentsText + " " + watchdripData.getTimeAgo(treatmentObj.time);
         }
-
         treatment.setProperty(hmUI.prop.MORE, {
             text: treatmentsText
         });
@@ -343,7 +348,7 @@ WatchFace({
             lineStyles['lineLow'] = new PointStyle("", LINE_SIZE);
             lineStyles['lineHigh'] = new PointStyle("", LINE_SIZE);
             lineStyles['treatment'] = new PointStyle(TREATMENT_POINT_SIZE, TREATMENT_POINT_SIZE);
-            watchdrip.createGraph(24,185,330,180, lineStyles);
+            watchdrip.createGraph(24,220,330,135, lineStyles);
             watchdrip.start();
         }
         catch (e) {

@@ -46,26 +46,26 @@ export const DIGITAL_TIME_HOUR = {
     hour_startX: px(19),
     hour_startY: px(123),
     hour_zero: true,
-    hour_space: 8,
+    hour_space: 9,
     hour_align: hmUI.align.CENTER_H,
     hour_array: bigNumArr,
 };
 
 export const DIGITAL_TIME_MINUTES = {
-    minute_startX: px(223),
+    minute_startX: px(222),
     minute_startY: px(123),
     minute_zero: true,
-    minute_space: 8,
+    minute_space: 9,
     minute_align: hmUI.align.CENTER_H,
     minute_array: bigNumArr,
 };
 
 export const TIME_AM_PM = {
-    am_x: px(174),
+    am_x: px(173),
     am_y: px(200),
     am_sc_path: img('bigNum/am.png'),
     am_en_path: img('bigNum/am.png'),
-    pm_x: px(174),
+    pm_x: px(173),
     pm_y: px(200),
     pm_sc_path: img('bigNum/pm.png'),
     pm_en_path: img('bigNum/pm.png'),
@@ -115,6 +115,7 @@ export const DAYS_TEXT_IMG = {
     day_sc_array: dayNumArr,
     day_tc_array: dayNumArr,
     day_en_array: dayNumArr,
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const TEMP_CURRENT_TEXT_IMG = {
@@ -186,7 +187,7 @@ export const BG_VALUE_TEXT_IMG = {
     dot_image: img('bgNum/d.png'),
     font_array: bgNumArr,
     text: '0',
-    visible: false,
+    visible: true,
     h_space:1,
     show_level: hmUI.show_level.ONLY_NORMAL
 };
@@ -197,6 +198,7 @@ export const BG_TREND_IMAGE = {
     y: px(68),
     w: px(40),
     h: px(40),
+    show_level: hmUI.show_level.ONLY_NORMAL
 };
 export const BG_TIME_TEXT = {
     x: px(19),
@@ -208,30 +210,33 @@ export const BG_TIME_TEXT = {
     align_h: hmUI.align.LEFT,
     align_v: hmUI.align.TOP,
     text_style: hmUI.text_style.NONE,
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const BG_DELTA_TEXT = {
-    x: px(150),
+    x: px(115),
     y: px(340),
-    w: px(40),
+    w: px(80),
     h: px(45),
     color: Colors.defaultTransparent,
     text_size: px(30),
     align_h: hmUI.align.CENTER_H,
     align_v: hmUI.align.TOP,
     text_style: hmUI.text_style.NONE,
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const IOB_TEXT = {
-    x: px(190),
+    x: px(170),
     y: px(340),
-    w: px(110),
+    w: px(200),
     h: px(40),
     color: Colors.white,
     text_size: px(30),
-    align_h: hmUI.align.RIGHT,
+    align_h: hmUI.align.CENTER_H,
     align_v: hmUI.align.TOP,
     text_style: hmUI.text_style.NONE,
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const BG_STALE_RECT = {
@@ -241,6 +246,7 @@ export const BG_STALE_RECT = {
     h: px(4),
     color: Colors.white,
     visible: false,
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const BG_STALE_IMG = {
@@ -253,20 +259,23 @@ export const BG_STALE_IMG = {
 
 export const BG_STATUS_LOW_IMG = {
     x: px(206),
-    y: px(105),
+    y: px(103),
     src: 'watchdrip/bgLow.png',
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const BG_STATUS_OK_IMG = {
     x: px(347),
     y: px(75),
     src: 'watchdrip/bgOk.png',
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const BG_STATUS_HIGH_IMG = {
-    x: px(206),
-    y: px(58),
+    x: px(205),
+    y: px(56),
     src: 'watchdrip/bgHigh.png',
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const TREATMENT_TEXT = {
@@ -279,6 +288,7 @@ export const TREATMENT_TEXT = {
     align_h: hmUI.align.CENTER_H,
     align_v: hmUI.align.TOP,
     text_style: hmUI.text_style.NONE,
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const PHONE_BATTERY_TEXT = {
@@ -303,7 +313,7 @@ export const WATCH_BATTERY_TEXT = {
     text_size: px(21),
     align_h: hmUI.align.LEFT,
     align_v: hmUI.align.TOP,
-    text_style: hmUI.text_style.NONE,
+    text_style: hmUI.text_style.NONE
 };
 
 export const BG_RECT = {
@@ -312,6 +322,16 @@ export const BG_RECT = {
     w: px(DEVICE_WIDTH),
     h: px(DEVICE_HEIGHT),
     color: Colors.defaultTransparent,
+    show_level: hmUI.show_level.ONLY_NORMAL
+}
+
+export const BG_RECT_AOD = {
+    x: px(0),
+    y: px(0),
+    w: px(DEVICE_WIDTH),
+    h: px(DEVICE_HEIGHT),
+    color: Colors.black,
+    show_level: hmUI.show_level.ONLY_AOD
 }
 
 export const IMG_STATUS_BT_DISCONNECTED = {
