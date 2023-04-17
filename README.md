@@ -10,3 +10,7 @@ Current build:
 [28963-Watchdrip_WF-1.0.0-20230417120829.zab.zip](https://github.com/sedy89/zeppos_watchdrip_timer_wf/files/11248838/28963-Watchdrip_WF-1.0.0-20230417120829.zab.zip)
 
 Info: *The Watchface is changing it's accent color based on the BG status. Low -> red, In Range -> green, high -> yellow/orange*
+
+Compile the watchface yourself and change those parameters if required (watchface/gts3/styles.js)
+![grafik](https://user-images.githubusercontent.com/65983953/232456088-b3dc411d-cbbd-401a-a74e-557bf4bb35cd.png)
+
