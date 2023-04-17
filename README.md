@@ -12,5 +12,7 @@ Current build:
 Info: *The Watchface is changing it's accent color based on the BG status. Low -> red, In Range -> green, high -> yellow/orange*
 
 Compile the watchface yourself and change those parameters if required (watchface/gts3/styles.js)
-![grafik](https://user-images.githubusercontent.com/65983953/232456088-b3dc411d-cbbd-401a-a74e-557bf4bb35cd.png)
+![grafik](https://user-images.githubusercontent.com/65983953/232456088-b3dc411d-cbbd-401a-a74e-557bf4bb35cd.png) ![gts3_graph_catch](https://user-images.githubusercontent.com/65983953/232457934-bd1dcee7-418a-4076-8c58-b39cf40b65c7.png)
+
+
 
