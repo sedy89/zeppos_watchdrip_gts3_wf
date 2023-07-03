@@ -1,4 +1,4 @@
- # zeppos Watchface for Watchdrip for GTS3 with Xdrip Graph
+ # zeppos Watchface for Watchdrip for GTS3 and GTS4 with Xdrip Graph
 
 ![gts3_accent_color](https://user-images.githubusercontent.com/65983953/232462735-a074480b-8a95-4b48-91e5-f1f9c6f31dd0.png)
 
@@ -9,7 +9,7 @@ The watchface can display a dynamic data from the Android phone Watchdrip applic
 
 Current build:
 
-[28963-Watchdrip_WF-1.0.0-20230417120829.zab.zip](https://github.com/sedy89/zeppos_watchdrip_timer_wf/files/11248838/28963-Watchdrip_WF-1.0.0-20230417120829.zab.zip)
+[28963-Watchdrip_WF-1.0.0-20230703160732.zab.zip](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/files/11937672/28963-Watchdrip_WF-1.0.0-20230703160732.zab.zip)
 
 
 Compile the watchface yourself and change those parameters if required (watchface/gts3/styles.js)
