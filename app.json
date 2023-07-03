@@ -113,6 +113,14 @@
         {
           "name": "gts3-w",
           "deviceSource": 225
+        },
+        {
+          "name": "Amazfit GTS 4",
+          "deviceSource": 7995648
+        },
+        {
+          "name": "Amazfit GTS 4",
+          "deviceSource": 7995649
         }
       ],
       "designWidth": 390
