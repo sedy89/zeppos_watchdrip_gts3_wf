@@ -56,9 +56,9 @@ import {BG_IMG, BG_IMG_AOD} from "../../utils/config/styles_global";
 import {PointStyle} from "../../utils/watchdrip/graph/pointStyle";
 import {PROGRESS_ANGLE_INC, PROGRESS_UPDATE_INTERVAL_MS, TEST_DATA} from "../../utils/config/constants";
 
-let imgBg, bg_rect, watch_battery_prog, screenType;
+let imgBg, watch_battery_prog, screenType;
 let bgValTextWidget, bgValTextImgWidget, bgValTextImgWidget_AOD, bgValTimeTextWidget, bgDeltaTextWidget, bgDeltaTextWidget_AOD, bgTrendImageWidget, bgTrendImageWidget_AOD, bgStaleLine, birdStaleCage,
-    btDisconnected, watchBattery, iob, gramm_value_text_img, treatment, bgStatusLow, bgStatusOk, bgStatusHigh, progress;
+    iob, gramm_value_text_img, treatment, bgStatusLow, bgStatusOk, bgStatusHigh, progress;
 
 let globalNS, progressTimer, progressAngle;
 

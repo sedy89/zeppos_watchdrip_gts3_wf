@@ -2,14 +2,14 @@
   "configVersion": "v2",
   "app": {
     "appId": 28964,
-    "appName": "Watchdrip WF KIDS",
+    "appName": "Snoopy Watchdrip WF",
     "appType": "watchface",
     "version": {
       "code": 1,
       "name": "2.0.0"
     },
     "vender": "bigdigital",
-    "description": "kids watchface",
+    "description": "snoopy watchface",
     "icon": "images/preview.png"
   },
   "permissions": ["gps"],
