@@ -411,7 +411,6 @@ export const IOB_TEXT_AOD = {
     show_level: hmUI.show_level.ONLY_AOD,
 };
 
-
 export const BG_TIME_TEXT = {
     x: px(300),
     y: px(263),
@@ -425,16 +424,12 @@ export const BG_TIME_TEXT = {
     show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
-
 export const GRAMM_VALUE_TEXT_IMG = {
-    // x: px(350),
-    // y: px(145),
-    x: px(363),
-    y: px(364),
+    x: px(350),
+    y: px(145),
     w: px(100),
     h: px(27),
-    // color: Colors.white,
-    color: Colors.black,
+    color: Colors.white,
     text_size: px(15),
     text_style: hmUI.text_style.NONE,
     show_level: hmUI.show_level.ONLY_NORMAL
