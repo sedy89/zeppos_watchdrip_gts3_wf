@@ -1,7 +1,6 @@
  # zeppos Simpsons Watchface for Watchdrip for GTS3 and GTS4 with Xdrip Graph
 
-![simpsons](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/2db7b7d7-cf07-4a45-b420-25550faa2c17)![simpsons_aod](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/23b9c026-abc5-41bf-9dc7-69c20a0cadac)
-
+![gts3_simpsons_all](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/ac21f40d-543a-42c6-b9b8-2cc276d90de4)
 
 Info: *The Watchface is changing it's accent color based on the BG status. Low -> red, In Range -> green, high -> yellow/orange*
 
