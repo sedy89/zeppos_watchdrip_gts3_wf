@@ -9,7 +9,7 @@ The watchface can display a dynamic data from the Android phone Watchdrip applic
 
 Current build:
 
-[28969-Simpsons_Watchdrip_WF-2.0.0-20230826154515.zab.zip](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/files/12445465/28969-Simpsons_Watchdrip_WF-2.0.0-20230826154515.zab.zip)
+[28969-Simpsons_Watchdrip_WF-2.0.0-20230826161308.zab.zip](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/files/12445508/28969-Simpsons_Watchdrip_WF-2.0.0-20230826161308.zab.zip)
 
 Compile the watchface yourself and change those parameters if required (watchface/gts3/styles.js)
 ![grafik](https://user-images.githubusercontent.com/65983953/232456088-b3dc411d-cbbd-401a-a74e-557bf4bb35cd.png) ![simpsons_catch](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/97a83881-1262-4a7a-8dff-2af65092e6fe)
