@@ -39,7 +39,7 @@ export const Colors = {
 
 /*set to true on wf creation*/
 export const TEST_DATA = false;
-// export const TEST_DATA = true;
+
 export const USE_FILE_INFO_STORAGE = true;
 
 export const MMOLL_TO_MGDL = 18.0182;
