@@ -1,15 +1,15 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 28963,
-    "appName": "Watchdrip WF",
+    "appId": 28966,
+    "appName": "Panther Watchdrip WF",
     "appType": "watchface",
     "version": {
       "code": 1,
-      "name": "1.0.0"
+      "name": "2.0.0"
     },
     "vender": "bigdigital",
-    "description": "timer watchface",
+    "description": "panther watchface",
     "icon": "images/preview.png"
   },
   "permissions": ["gps"],

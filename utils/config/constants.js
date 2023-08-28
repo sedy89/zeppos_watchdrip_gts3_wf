@@ -7,7 +7,7 @@ export const APP_FETCH_TIMER_UPDATE_INTERVAL_MS = SECOND_IN_MS * 1;
 export const APP_FETCH_UPDATE_INTERVAL_MS = MINUTE_IN_MS * 5;
 
 export const DATA_AOD_TIMER_UPDATE_INTERVAL_MS = SECOND_IN_MS * 30;
-export const DATA_AOD_UPDATE_INTERVAL_MS = MINUTE_IN_MS * 5;
+export const DATA_AOD_UPDATE_INTERVAL_MS = MINUTE_IN_MS * 2;
 
 export const DATA_STALE_TIME_MS = MINUTE_IN_MS * 2;
 
@@ -28,10 +28,12 @@ export const Colors = {
     default:0xfc6950,
     defaultTransparent:0xababab,
     white:0xffffff,
+    panther:0xffd7e6,
+    pantherDark:0x502895,
     black:0x000000,
     bgHigh:0xffa0a0,
     bgLow:0x8bbbff,
-    accent:0xffbeff37,
+    accent:0xffbeff,
     accentHigh:0xfabb00,
     accentLow:0xa80702,
     accentOk:0x218c03,
