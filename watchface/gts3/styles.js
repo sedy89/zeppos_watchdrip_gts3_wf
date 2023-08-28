@@ -272,8 +272,8 @@ export const WATCH_BATTERY_TEXT_AOD = {
 };
 
 export const BG_VALUE_NO_DATA_TEXT = {
-    x: px(138),
-    y: px(141),
+    x: px(260),
+    y: px(247),
     w: px(108),
     h: px(50),
     color: Colors.panther,
