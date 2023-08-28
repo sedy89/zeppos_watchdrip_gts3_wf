@@ -7,7 +7,6 @@ This repository contains a watchface which is designed to work together with wat
 
 Current build:
 
-[28966-Panther_Watchdrip_WF-2.0.0-20230828164850.zab.zip](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/files/12455588/28966-Panther_Watchdrip_WF-2.0.0-20230828164850.zab.zip)
 
 Compile the watchface yourself and change those parameters if required (watchface/gts3/styles.js)
 ![grafik](https://user-images.githubusercontent.com/65983953/232456088-b3dc411d-cbbd-401a-a74e-557bf4bb35cd.png) 
