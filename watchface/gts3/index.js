@@ -9,6 +9,9 @@ import {
     NORMAL_HEART_RATE_SEPARATOR_TEXT_IMG,
     NORMAL_STEP_SEPARATOR_TEXT_IMG,
     NORMAL_STEP_TEXT_IMG,
+    BG_STATUS_LOW_IMG_AOD,
+    BG_STATUS_HIGH_IMG_AOD,
+    BG_STATUS_OK_IMG_AOD,
     BG_STATUS_LOW_IMG,
     BG_STATUS_HIGH_IMG,
     BG_STATUS_OK_IMG,
@@ -55,7 +58,7 @@ import {PROGRESS_ANGLE_INC, PROGRESS_UPDATE_INTERVAL_MS, TEST_DATA} from "../../
 
 let imgBg, screenType;
 let bgValTextWidget, bgValTextImgWidget, bgValTextImgWidget_AOD, bgValTimeTextWidget, bgValTimeTextWidget_AOD, bgDeltaTextWidget, bgDeltaTextWidget_AOD, bgTrendImageWidget, bgTrendImageWidget_AOD, bgStaleLine,
-    iob, gramm_value_text_img, treatment, bgStatusLow, bgStatusOk, bgStatusHigh, progress, normal_frame_animation_1;
+    iob, gramm_value_text_img, treatment, bgStatusLow, bgStatusOk, bgStatusHigh, bgStatusLow_aod, bgStatusOk_aod, bgStatusHigh_aod, progress, normal_frame_animation_1;
 
 let globalNS, progressTimer, progressAngle;
 
@@ -182,6 +185,9 @@ WatchFace({
         bgStatusLow = hmUI.createWidget(hmUI.widget.IMG, BG_STATUS_LOW_IMG);
         bgStatusOk = hmUI.createWidget(hmUI.widget.IMG, BG_STATUS_OK_IMG);
         bgStatusHigh = hmUI.createWidget(hmUI.widget.IMG, BG_STATUS_HIGH_IMG);
+        bgStatusLow_aod = hmUI.createWidget(hmUI.widget.IMG, BG_STATUS_LOW_IMG_AOD);
+        bgStatusOk_aod = hmUI.createWidget(hmUI.widget.IMG, BG_STATUS_OK_IMG_AOD);
+        bgStatusHigh_aod = hmUI.createWidget(hmUI.widget.IMG, BG_STATUS_HIGH_IMG_AOD);
         progress = hmUI.createWidget(hmUI.widget.IMG, IMG_LOADING_PROGRESS);
         gramm_value_text_img = hmUI.createWidget(hmUI.widget.TEXT, GRAMM_VALUE_TEXT_IMG);
         stopLoader();
@@ -212,14 +218,20 @@ WatchFace({
         bgStatusLow.setProperty(hmUI.prop.VISIBLE, false);
         bgStatusOk.setProperty(hmUI.prop.VISIBLE, false);
         bgStatusHigh.setProperty(hmUI.prop.VISIBLE, false);
+        bgStatusLow_aod.setProperty(hmUI.prop.VISIBLE, false);
+        bgStatusOk_aod.setProperty(hmUI.prop.VISIBLE, false);
+        bgStatusHigh_aod.setProperty(hmUI.prop.VISIBLE, false);
 
         if (bgObj.isHasData()) {
             if (bgObj.isHigh) {
                 bgStatusHigh.setProperty(hmUI.prop.VISIBLE, true);
+                bgStatusHigh_aod.setProperty(hmUI.prop.VISIBLE, true);
             } else if (bgObj.isLow) {
                 bgStatusLow.setProperty(hmUI.prop.VISIBLE, true);
+                bgStatusLow_aod.setProperty(hmUI.prop.VISIBLE, true);
             } else {
                 bgStatusOk.setProperty(hmUI.prop.VISIBLE, true);
+                bgStatusOk_aod.setProperty(hmUI.prop.VISIBLE, true);
             }
         }
 
@@ -261,6 +273,7 @@ WatchFace({
         if (TEST_DATA) {
             treatment.setProperty(hmUI.prop.MORE, { text: "1.2U at 09:32" });
             bgStatusLow.setProperty(hmUI.prop.VISIBLE, true);
+            bgStatusLow_aod.setProperty(hmUI.prop.VISIBLE, true);
             // bgStatusOk.setProperty(hmUI.prop.VISIBLE, true);
             // bgStatusHigh.setProperty(hmUI.prop.VISIBLE, true);
             bgValTimeTextWidget.setProperty(hmUI.prop.VISIBLE, true);

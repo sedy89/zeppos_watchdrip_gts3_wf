@@ -437,25 +437,46 @@ export const BG_STALE_IMG = {
     show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
-export const BG_STATUS_LOW_IMG = {
+export const BG_STATUS_LOW_IMG_AOD = {
     x: px(0),
     y: px(0),
-    src: 'watchdrip/bgLow.png',
+    src: 'watchdrip/bgLow_aod.png',
     show_level: hmUI.show_level.ONLY_AOD,
+};
+
+export const BG_STATUS_OK_IMG_AOD = {
+    x: px(0),
+    y: px(0),
+    src: 'watchdrip/bgOk_aod.png',
+    show_level: hmUI.show_level.ONLY_AOD,
+};
+
+export const BG_STATUS_HIGH_IMG_AOD = {
+    x: px(0),
+    y: px(0),
+    src: 'watchdrip/bgHigh_aod.png',
+    show_level: hmUI.show_level.ONLY_AOD,
+};
+
+export const BG_STATUS_LOW_IMG = {
+    x: px(77),
+    y: px(299),
+    src: 'watchdrip/bgLow.png',
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const BG_STATUS_OK_IMG = {
-    x: px(0),
-    y: px(0),
+    x: px(77),
+    y: px(299),
     src: 'watchdrip/bgOk.png',
-    show_level: hmUI.show_level.ONLY_AOD,
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const BG_STATUS_HIGH_IMG = {
-    x: px(0),
-    y: px(0),
+    x: px(77),
+    y: px(299),
     src: 'watchdrip/bgHigh.png',
-    show_level: hmUI.show_level.ONLY_AOD,
+    show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const TREATMENT_TEXT = {
