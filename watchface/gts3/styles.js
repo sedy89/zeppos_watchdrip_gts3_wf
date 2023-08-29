@@ -174,7 +174,7 @@ export const NORMAL_HEART_RATE_TEXT_IMG = {
     font_array: smallNumArr,
     padding: false,
     h_space: 4,
-    invalid_image: img('bgNum/10.png'),
+    invalid_image: img('smallNum/15.png'),
     align_h: hmUI.align.RIGHT,
     type: hmUI.data_type.HEART,
     show_level: hmUI.show_level.ONLY_NORMAL,
