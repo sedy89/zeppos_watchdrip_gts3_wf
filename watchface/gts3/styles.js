@@ -40,7 +40,7 @@ let smallNumBgArr = range(10).map((v) => {
     return img(`smallNumBg/${v}.png`);
 });
 
-let batteryArr = range(6, 15).map((v) => {
+let batteryArr = range(6, 16).map((v) => {
     return img(`status/${v}.png`);
 });
 
@@ -149,8 +149,8 @@ export const TEMP_IMG = {
 };
 
 export const HEART_IMG = {
-    x: px(205),
-    y: px(383),
+    x: px(310),
+    y: px(337),
     w: px(100),
     h: px(100),
     src: img('smallNum/14.png'),
@@ -169,10 +169,9 @@ export const STEP_IMG = {
 };
 
 export const NORMAL_HEART_RATE_TEXT_IMG = {
-    x: 205,
-    // y: 385,
-    y: 422,
-    font_array: bgNumArr,
+    x: px(310),
+    y: px(337),
+    font_array: smallNumArr,
     padding: false,
     h_space: 4,
     invalid_image: img('bgNum/10.png'),
@@ -182,17 +181,14 @@ export const NORMAL_HEART_RATE_TEXT_IMG = {
 }
 
 export const NORMAL_HEART_RATE_SEPARATOR_TEXT_IMG = {
-    x: 269,
-    // y: 380,
-    // y: 422,
-    y: 420,
+    x: px(330),
+    y: px(375),
     src: img('status/16.png'),
     show_level: hmUI.show_level.ONLY_NORMAL,
 };
 
 export const NORMAL_STEP_TEXT_IMG = {
     x: 132,
-    // x: 135,
     y: 422,
     font_array: bgNumArr,
     padding: false,
@@ -203,7 +199,6 @@ export const NORMAL_STEP_TEXT_IMG = {
 };
 
 export const NORMAL_STEP_SEPARATOR_TEXT_IMG = {
-    // x: 93,
     x: 90,
     y: 400,
     src: img('status/17.png'),
@@ -212,7 +207,6 @@ export const NORMAL_STEP_SEPARATOR_TEXT_IMG = {
 
 export const TEMP_CURRENT_TEXT_IMG = {
     x: 313,
-    // y: 227,
     y: 222,
     font_array: smallNumArr,
     padding: false,
@@ -333,7 +327,7 @@ export const WATCH_BATTERY_PROG = {
 
 export const WATCH_BATTERY_TEXT = {
     x: 10,
-    y: 332,
+    y: 337,
     font_array: smallNumArr,
     padding: false,
     h_space: 2,
@@ -537,7 +531,7 @@ export const IMG_LOADING_PROGRESS = {
 
 export const GRAMM_VALUE_TEXT_IMG = {
     x: px(313),
-    y: px(303),
+    y: px(297),
     w: px(100),
     h: px(27),
     color: Colors.white,
