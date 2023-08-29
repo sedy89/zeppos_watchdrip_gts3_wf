@@ -5,4 +5,5 @@ This repository contains a watchface which is designed to work together with wat
 The watchface can display a dynamic data from the Android phone Watchdrip application by usin ZEPP OS fetch API.
 
 Current build:
-  [28963-Watchdrip_WF-1GTS3.zip](https://github.com/sedy89/zeppos_watchdrip_timer_wf/files/10449259/28963-Watchdrip_WF-1GTS3.zip)
+  
+[28970-Color_Watchdrip_WF-1.0.0-20230829211520.zab.zip](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/files/12468399/28970-Color_Watchdrip_WF-1.0.0-20230829211520.zab.zip)
