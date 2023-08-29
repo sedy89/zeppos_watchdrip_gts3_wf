@@ -1,5 +1,6 @@
  # zeppos Snoopy Watchface for Watchdrip for GTS3 and GTS4 with Xdrip Graph
-![gts3_snoopy_github](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/6764959d-b161-4d74-b4ca-d7777a9d2258)
+
+![gts34_snoopy_git](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/bf53d8a5-fbf4-40b7-9a14-b2606a3e02b1)
 
 Info: *Tweety is changing color based on the BG status. Low -> red, In Range -> green, high -> yellow/orange*
 
@@ -8,9 +9,11 @@ The watchface can display a dynamic data from the Android phone Watchdrip applic
 
 Current build:
 
-[28964-Snoopy_Watchdrip_WF-2.0.0-20230821192202.zab.zip](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/files/12399088/28964-Snoopy_Watchdrip_WF-2.0.0-20230821192202.zab.zip)
+[28964-Snoopy_Watchdrip_WF-2.0.0-20230829161136.zab.zip](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/files/12465491/28964-Snoopy_Watchdrip_WF-2.0.0-20230829161136.zab.zip)
+
 
 Compile the watchface yourself and change those parameters if required (watchface/gts3/styles.js)
 ![grafik](https://user-images.githubusercontent.com/65983953/232456088-b3dc411d-cbbd-401a-a74e-557bf4bb35cd.png) 
 
-![gts3_kids_catch](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/73d63fea-be89-47de-9e75-9218a1b11972)
+![gts34_snoopy_catch](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/600a83c7-bd8d-4477-892f-da35c37aa10f)
+
