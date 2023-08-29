@@ -9,7 +9,7 @@ The watchface can display a dynamic data from the Android phone Watchdrip applic
 
 Current build:
 
-[28964-Snoopy_Watchdrip_WF-2.0.0-20230829162822.zab.zip](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/files/12465646/28964-Snoopy_Watchdrip_WF-2.0.0-20230829162822.zab.zip)
+[28964-Snoopy_Watchdrip_WF-2.0.0-20230829164149.zab.zip](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/files/12465813/28964-Snoopy_Watchdrip_WF-2.0.0-20230829164149.zab.zip)
 
 
 Compile the watchface yourself and change those parameters if required (watchface/gts3/styles.js)
