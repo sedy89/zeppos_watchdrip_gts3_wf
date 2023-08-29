@@ -6,10 +6,10 @@ import {DEVICE_HEIGHT, DEVICE_WIDTH} from "../../utils/config/device";
 export const CONST_ACCENT = false;
 
 /*turn off to use pump insulin information*/
-export const IOB_SIM = false;
+export const IOB_SIM = true;
 
 /*turn on to show amount of gramm required to neutralize the iob*/
-export const CATCH_IOB = true;
+export const CATCH_IOB = false;
 /*correction factor*/
 export const BZ_E_RATIO = 170;
 /*carbohydrates per unit */

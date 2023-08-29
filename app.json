@@ -1,15 +1,15 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 28963,
-    "appName": "Watchdrip WF",
+    "appId": 28970,
+    "appName": "Color Watchdrip WF",
     "appType": "watchface",
     "version": {
       "code": 1,
       "name": "1.0.0"
     },
     "vender": "bigdigital",
-    "description": "timer watchface",
+    "description": "color watchface",
     "icon": "images/preview.png"
   },
   "permissions": ["gps"],
@@ -113,6 +113,14 @@
         {
           "name": "gts3-w",
           "deviceSource": 225
+        },
+        {
+          "name": "Amazfit GTS 4",
+          "deviceSource": 7995648
+        },
+        {
+          "name": "Amazfit GTS 4",
+          "deviceSource": 7995649
         }
       ],
       "designWidth": 390
