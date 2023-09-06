@@ -1,4 +1,4 @@
- # zeppos Pink Panther Watchface for Watchdrip for GTS3 and GTS4 with Xdrip Graph
+ # zeppos Pink Panther Watchface for Watchdrip for GTS3/4 and Cheetha Square with Xdrip Graph
 ![gts34_panther_git](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/ffd1e7f7-a76f-45a4-88f7-11d1ebc691fe)
 
 Info: *AOD Background is changing color based on the BG status. Low -> red, In Range -> green, high -> yellow/orange*
