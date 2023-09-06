@@ -1,4 +1,4 @@
- # zeppos Simpsons Watchface for Watchdrip for GTS3 and GTS4 with Xdrip Graph
+ # zeppos Simpsons Watchface for Watchdrip for GTS3/4 and Cheetah Square with Xdrip Graph
 
 ![gts3_simpsons_all](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/ac21f40d-543a-42c6-b9b8-2cc276d90de4)
 
