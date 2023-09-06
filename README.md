@@ -1,4 +1,4 @@
- # zeppos Watchface for Watchdrip for GTS3 and GTS4 with Xdrip Graph
+ # zeppos Watchface for Watchdrip for GTS3/4 and Cheetah Square with Xdrip Graph
 
 ![gts3_accent_color](https://user-images.githubusercontent.com/65983953/232462735-a074480b-8a95-4b48-91e5-f1f9c6f31dd0.png)
 
