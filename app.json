@@ -2,14 +2,14 @@
   "configVersion": "v2",
   "app": {
     "appId": 28963,
-    "appName": "Watchdrip WF",
+    "appName": "Graph Watchdrip WF",
     "appType": "watchface",
     "version": {
       "code": 1,
       "name": "1.0.0"
     },
     "vender": "bigdigital",
-    "description": "timer watchface",
+    "description": "graph watchface",
     "icon": "images/preview.png"
   },
   "permissions": ["gps"],
