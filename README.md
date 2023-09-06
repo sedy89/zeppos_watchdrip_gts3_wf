@@ -1,4 +1,4 @@
- # zeppos Snoopy Watchface for Watchdrip for GTS3 and GTS4 with Xdrip Graph
+ # zeppos Snoopy Watchface for Watchdrip for GTS3/4 and Cheetah (Square) with Xdrip Graph
 
 ![gts34_snoopy_git](https://github.com/sedy89/zeppos_watchdrip_gts3_wf/assets/65983953/bf53d8a5-fbf4-40b7-9a14-b2606a3e02b1)
 
