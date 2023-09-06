@@ -121,6 +121,10 @@
         {
           "name": "Amazfit GTS 4",
           "deviceSource": 7995649
+        },
+        {
+          "name": "cheetah square",
+          "deviceSource": 8257793
         }
       ],
       "designWidth": 390
