@@ -287,10 +287,10 @@ export class Watchdrip {
     }
 
     updateValuesWidget() {
+        this.drawGraph();
         if (typeof this.updateValueWidgetCallback === "function") {
             this.updateValueWidgetCallback(this.watchdripData);
         }
-        this.drawGraph();
     }
 
     updateTimesWidget() {
