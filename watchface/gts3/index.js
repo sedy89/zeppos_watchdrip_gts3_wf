@@ -3,18 +3,18 @@ import {Watchdrip} from "../../utils/watchdrip/watchdrip";
 import {WatchdripData} from "../../utils/watchdrip/watchdrip-data";
 import {getGlobal} from "../../shared/global";
 import {
-    NORMAL_STEP_CIRCLE_SCALE,
+    NORMAL_SYSTEM_DISCONNECT_IMG,
     NORMAL_DATE_IMG_DATE_DAY,
-    NORMAL_DATE_IMG_DATE_WEEK,
-    NORMAL_CALORIE_CIRCLE_SCALE,
-    NORMAL_BATTERY_TEXT_IMG,
-    NORMAL_BATTERY_IMG_PROGRESS_IMG_LEVEL,
+    NORMAL_DATE_IMG_DATE_MONTH,
+    NORMAL_DATE_IMG_DATE_YEAR,
+    NORMAL_DATE_IMG_DATE_WEEK_IMG,
+    NORMAL_TEMPERATURE_CURRENT_TEXT_IMG,
+    NORMAL_WEATHER_IMAGE_PROGRESS_IMG_LEVEL,
+    NORMAL_STEP_CURRENT_TEXT_IMG,
     NORMAL_DIGITAL_CLOCK_IMG_TIME,
-    NORMAL_ANALOG_CLOCK_HOURS_IMG,
-    NORMAL_ANALOG_CLOCK_SECONDS_IMG,
-    NORMAL_ANALOG_CLOCK_MINUTES_IMG,
-    IDLE_ANALOG_CLOCK_HOURS_IMG,
-    IDLE_ANALOG_CLOCK_MINUTES_IMG,
+    NORMAL_HEART_RATE_TEXT_TEXT_IMG,
+    NORMAL_BATTERY_TEXT_TEXT_IMG,
+    NORMAL_DOUBLE_TREND_ANIM,
     BG_DELTA_TEXT,
     BG_STALE_IMG,
     BG_STATUS_LOW_IMG,
@@ -29,33 +29,30 @@ import {
     IOB_TEXT,
     IOB_TEXT_AOD,
     TREATMENT_TEXT,
-    TEMP_CURRENT_TEXT_IMG,
-    WEATHER_IMG_PROG_IMG_LEVEL,
+    IDLE_DATE_IMG_DATE_YEAR,
+    IDLE_DATE_IMG_DATE_MONTH,
+    IDLE_DATE_IMG_DATE_DAY,
+    IDLE_DIGITAL_CLOCK_IMG_TIME,
     GRAMM_VALUE_TEXT_IMG,
     BZ_E_RATIO,
     KE_E_RATIO,
     DIAB_GOAL,
     CATCH_IOB,
     BG_VALUE_TEXT_IMG_AOD,
-    BG_TREND_IMAGE_AOD,
     BG_DELTA_TEXT_AOD,
-    NORMAL_FRAME_ANIM_LOW,
-    NORMAL_FRAME_ANIM_OK,
-    NORMAL_FRAME_ANIM_HIGH,
-    NORMAL_BG_LEVEL,
-    BG_RECT,
 } from "./styles";
 import {BG_IMG, BG_IMG_AOD} from "../../utils/config/styles_global";
 import {PointStyle} from "../../utils/watchdrip/graph/pointStyle";
-import {PROGRESS_ANGLE_INC, PROGRESS_UPDATE_INTERVAL_MS, TEST_DATA, MMOLL_TO_MGDL} from "../../utils/config/constants";
+import {PROGRESS_ANGLE_INC, PROGRESS_UPDATE_INTERVAL_MS, TEST_DATA} from "../../utils/config/constants";
 
 let screenType;
 let bgValTextWidget, bgValTextImgWidget, bgValTextImgWidget_AOD, bgValTimeTextWidget, bgValTimeTextWidget_AOD, bgDeltaTextWidget, bgDeltaTextWidget_AOD,
-    bgTrendImageWidget, bgTrendImageWidget_AOD, bgStaleLine, iob, gramm_value_text_img, treatment, bgStatusLow, bgStatusOk, bgStatusHigh,
-    progress, normal_frame_animation_low, normal_frame_animation_ok, normal_frame_animation_high, normal_step_circle_scale, normal_calorie_circle_scale,
-    normal_bg_text_img;
+    bgTrendImageWidget, bgStaleLine, iob, gramm_value_text_img, treatment, bgStatusLow, bgStatusOk, bgStatusHigh,
+    progress, normal_double_trend_animation;
 let globalNS, progressTimer, progressAngle;
 let debug, watchdrip;
+
+let normal_pai_circle_scale, normal_battery_circle_scale, normal_step_circle_scale, normal_heart_rate_circle_scale;
 
 export const logger = Logger.getLogger("timer-page");
 
@@ -67,16 +64,6 @@ function initDebug() {
 
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-function getAngleBG(bgVlaue){
-    let bg=bgVlaue
-    if (bg.includes(".")) { 
-        bg=Math.trunc(MMOLL_TO_MGDL * bgVlaue)
-    }
-    if (bg > 300) return 10;
-    if (bg <= 50) return 1;
-    return Math.trunc((10/300) * bg);
 }
 
 function calculateGramm(bg_value, iob_string) {
@@ -130,32 +117,39 @@ WatchFace({
         } else {
             imgBg = hmUI.createWidget(hmUI.widget.IMG, BG_IMG)
         }
+        
+        normal_system_disconnect_img = hmUI.createWidget(hmUI.widget.IMG_STATUS, NORMAL_SYSTEM_DISCONNECT_IMG);
+        normal_date_img_date_week_img = hmUI.createWidget(hmUI.widget.IMG_WEEK, NORMAL_DATE_IMG_DATE_WEEK_IMG);
 
-        normal_step_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, NORMAL_STEP_CIRCLE_SCALE);
-        normal_battery_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, NORMAL_BATTERY_TEXT_IMG);
-        normal_battery_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, NORMAL_BATTERY_IMG_PROGRESS_IMG_LEVEL);
-        normal_digital_clock_img_time = hmUI.createWidget(hmUI.widget.IMG_TIME, NORMAL_DIGITAL_CLOCK_IMG_TIME);
+        normal_date_img_date_year = hmUI.createWidget(hmUI.widget.IMG_DATE, NORMAL_DATE_IMG_DATE_YEAR);
+        normal_date_img_date_month = hmUI.createWidget(hmUI.widget.IMG_DATE, NORMAL_DATE_IMG_DATE_MONTH);
         normal_date_img_date_day = hmUI.createWidget(hmUI.widget.IMG_DATE, NORMAL_DATE_IMG_DATE_DAY);
-        normal_date_img_date_week_img = hmUI.createWidget(hmUI.widget.IMG_WEEK, NORMAL_DATE_IMG_DATE_WEEK);
-        normal_calorie_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, NORMAL_CALORIE_CIRCLE_SCALE);
-        normal_weather_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, WEATHER_IMG_PROG_IMG_LEVEL);
-        normal_temperature_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, TEMP_CURRENT_TEXT_IMG);
-        normal_frame_animation_low = hmUI.createWidget(hmUI.widget.IMG_ANIM, NORMAL_FRAME_ANIM_LOW);
-        normal_frame_animation_ok = hmUI.createWidget(hmUI.widget.IMG_ANIM, NORMAL_FRAME_ANIM_OK);
-        normal_frame_animation_high = hmUI.createWidget(hmUI.widget.IMG_ANIM, NORMAL_FRAME_ANIM_HIGH);
+        
+        normal_temperature_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, NORMAL_TEMPERATURE_CURRENT_TEXT_IMG);
+        normal_weather_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, NORMAL_WEATHER_IMAGE_PROGRESS_IMG_LEVEL);
+        normal_step_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, NORMAL_STEP_CURRENT_TEXT_IMG);
+        normal_heart_rate_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, NORMAL_HEART_RATE_TEXT_TEXT_IMG);
+        normal_digital_clock_img_time = hmUI.createWidget(hmUI.widget.IMG_TIME, NORMAL_DIGITAL_CLOCK_IMG_TIME);
+        normal_battery_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, NORMAL_BATTERY_TEXT_TEXT_IMG);
+
+        idle_date_img_date_year = hmUI.createWidget(hmUI.widget.IMG_DATE, IDLE_DATE_IMG_DATE_YEAR);
+        idle_date_img_date_month = hmUI.createWidget(hmUI.widget.IMG_DATE, IDLE_DATE_IMG_DATE_MONTH);
+        idle_date_img_date_day = hmUI.createWidget(hmUI.widget.IMG_DATE, IDLE_DATE_IMG_DATE_DAY);
+        idle_digital_clock_img_time = hmUI.createWidget(hmUI.widget.IMG_TIME, IDLE_DIGITAL_CLOCK_IMG_TIME);
 
         //init watchdrip related widgets
-        normal_bg_text_img = hmUI.createWidget(hmUI.widget.IMG_LEVEL, NORMAL_BG_LEVEL);
+        normal_double_trend_animation = hmUI.createWidget(hmUI.widget.IMG_ANIM, NORMAL_DOUBLE_TREND_ANIM);
+        normal_double_trend_animation.setProperty(hmUI.prop.ANIM_STATUS,hmUI.anim_status.START);
+
         gramm_value_text_img = hmUI.createWidget(hmUI.widget.TEXT, GRAMM_VALUE_TEXT_IMG);
         bgValTextWidget = hmUI.createWidget(hmUI.widget.TEXT, BG_VALUE_NO_DATA_TEXT);
-        bgValTextImgWidget = hmUI.createWidget(hmUI.widget.TEXT, BG_VALUE_TEXT_IMG);
+        bgValTextImgWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, BG_VALUE_TEXT_IMG);
         bgValTextImgWidget_AOD = hmUI.createWidget(hmUI.widget.TEXT_IMG, BG_VALUE_TEXT_IMG_AOD);
         bgValTimeTextWidget = hmUI.createWidget(hmUI.widget.TEXT, BG_TIME_TEXT);
         bgValTimeTextWidget_AOD = hmUI.createWidget(hmUI.widget.TEXT, BG_TIME_TEXT_AOD);
         bgDeltaTextWidget = hmUI.createWidget(hmUI.widget.TEXT, BG_DELTA_TEXT);
         bgDeltaTextWidget_AOD = hmUI.createWidget(hmUI.widget.TEXT, BG_DELTA_TEXT_AOD);
         bgTrendImageWidget = hmUI.createWidget(hmUI.widget.IMG, BG_TREND_IMAGE);
-        bgTrendImageWidget_AOD = hmUI.createWidget(hmUI.widget.IMG, BG_TREND_IMAGE_AOD);
         bgStaleLine = hmUI.createWidget(hmUI.widget.IMG, BG_STALE_IMG);
         iob = hmUI.createWidget(hmUI.widget.TEXT, IOB_TEXT);
         iob_AOD = hmUI.createWidget(hmUI.widget.TEXT, IOB_TEXT_AOD);
@@ -165,24 +159,107 @@ WatchFace({
         bgStatusHigh = hmUI.createWidget(hmUI.widget.IMG, BG_STATUS_HIGH_IMG);
         progress = hmUI.createWidget(hmUI.widget.IMG, IMG_LOADING_PROGRESS);
 
-        timePointer_hours = hmUI.createWidget(hmUI.widget.TIME_POINTER, NORMAL_ANALOG_CLOCK_HOURS_IMG);
-        timePointer_mins = hmUI.createWidget(hmUI.widget.TIME_POINTER, NORMAL_ANALOG_CLOCK_MINUTES_IMG);
-        timePointer_seconds = hmUI.createWidget(hmUI.widget.TIME_POINTER, NORMAL_ANALOG_CLOCK_SECONDS_IMG);
-
-        idle_timePointer_hours = hmUI.createWidget(hmUI.widget.TIME_POINTER, IDLE_ANALOG_CLOCK_HOURS_IMG);
-        idle_timePointer_mins = hmUI.createWidget(hmUI.widget.TIME_POINTER, IDLE_ANALOG_CLOCK_MINUTES_IMG);
-
+        if (screenType != hmSetting.screen_type.AOD) {
+            normal_battery_circle_scale = hmUI.createWidget(hmUI.widget.ARC);
+            normal_pai_circle_scale = hmUI.createWidget(hmUI.widget.ARC);
+            normal_step_circle_scale = hmUI.createWidget(hmUI.widget.ARC);
+            normal_heart_rate_circle_scale = hmUI.createWidget(hmUI.widget.ARC);
+        };
+        
+        const pai = hmSensor.createSensor(hmSensor.id.PAI);
+        pai.addEventListener(hmSensor.event.CHANGE, function() {
+            scale_call();
+        });
+        const battery = hmSensor.createSensor(hmSensor.id.BATTERY);
+        battery.addEventListener(hmSensor.event.CHANGE, function() {
+          scale_call();
+        });
         const step = hmSensor.createSensor(hmSensor.id.STEP);
         step.addEventListener(hmSensor.event.CHANGE, function() {
             scale_call();
         });
-
-        const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);
-        calorie.addEventListener(hmSensor.event.CHANGE, function() {
+        const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);
+        heart_rate.addEventListener(hmSensor.event.CHANGE, function() {
           scale_call();
         });
 
         function scale_call() {
+            let valuePAI = pai.totalpai;
+            let targetPAI = 100;
+            let progressPAI = valuePAI/targetPAI;
+            if (progressPAI > 1) progressPAI = 1;
+            let progress_cs_normal_pai = progressPAI;
+
+            if (screenType != hmSetting.screen_type.AOD) {
+
+                // normal_pai_circle_scale
+                // initial parameters
+                let start_angle_normal_pai = -84;
+                let end_angle_normal_pai = -13;
+                let center_x_normal_pai = 195;
+                let center_y_normal_pai = 216;
+                let radius_normal_pai = 182;
+                let line_width_cs_normal_pai = 10;
+                let color_cs_normal_pai = 0xFF05C9FA;
+                
+                // calculated parameters
+                let arcX_normal_pai = center_x_normal_pai - radius_normal_pai;
+                let arcY_normal_pai = center_y_normal_pai - radius_normal_pai;
+                let CircleWidth_normal_pai = 2 * radius_normal_pai;
+                let angle_offset_normal_pai = end_angle_normal_pai - start_angle_normal_pai;
+                angle_offset_normal_pai = angle_offset_normal_pai * progress_cs_normal_pai;
+                let end_angle_normal_pai_draw = start_angle_normal_pai + angle_offset_normal_pai;
+                
+                normal_pai_circle_scale.setProperty(hmUI.prop.MORE, {
+                x: arcX_normal_pai,
+                y: arcY_normal_pai,
+                w: CircleWidth_normal_pai,
+                h: CircleWidth_normal_pai,
+                start_angle: start_angle_normal_pai,
+                end_angle: end_angle_normal_pai_draw,
+                color: color_cs_normal_pai,
+                line_width: line_width_cs_normal_pai,
+                });
+            };
+            
+            let valueBattery = battery.current;
+            let targetBattery = 100;
+            let progressBattery = valueBattery/targetBattery;
+            if (progressBattery > 1) progressBattery = 1;
+            let progress_cs_normal_battery = progressBattery;
+
+            if (screenType != hmSetting.screen_type.AOD) {
+
+                // normal_battery_circle_scale
+                // initial parameters
+                let start_angle_normal_battery = 83;
+                let end_angle_normal_battery = 15;
+                let center_x_normal_battery = 192;
+                let center_y_normal_battery = 220;
+                let radius_normal_battery = 191;
+                let line_width_cs_normal_battery = 9;
+                let color_cs_normal_battery = 0xFF3EBB9E;
+                
+                // calculated parameters
+                let arcX_normal_battery = center_x_normal_battery - radius_normal_battery;
+                let arcY_normal_battery = center_y_normal_battery - radius_normal_battery;
+                let CircleWidth_normal_battery = 2 * radius_normal_battery;
+                let angle_offset_normal_battery = end_angle_normal_battery - start_angle_normal_battery;
+                angle_offset_normal_battery = angle_offset_normal_battery * progress_cs_normal_battery;
+                let end_angle_normal_battery_draw = start_angle_normal_battery + angle_offset_normal_battery;
+                
+                normal_battery_circle_scale.setProperty(hmUI.prop.MORE, {
+                x: arcX_normal_battery,
+                y: arcY_normal_battery,
+                w: CircleWidth_normal_battery,
+                h: CircleWidth_normal_battery,
+                start_angle: start_angle_normal_battery,
+                end_angle: end_angle_normal_battery_draw,
+                color: color_cs_normal_battery,
+                line_width: line_width_cs_normal_battery,
+                });
+            };
+            
             let valueStep = step.current;
             let targetStep = step.target;
             let progressStep = valueStep/targetStep;
@@ -191,48 +268,73 @@ WatchFace({
 
             if (screenType != hmSetting.screen_type.AOD) {
 
-              // normal_step_circle_scale_circle_scale
-              let level = Math.round(progress_cs_normal_step * 100);
-              if (normal_step_circle_scale) {
-                normal_step_circle_scale.setProperty(hmUI.prop.MORE, {                      
-                  center_x: 261,
-                  center_y: 210,
-                  start_angle: 0,
-                  end_angle: 180,
-                  radius: 26,
-                  line_width: 9,
-                  corner_flag: 0,
-                  color: 0xFFA6FE00,
-                  show_level: hmUI.show_level.ONLY_NORMAL,
-                  level: level,
+                // normal_step_circle_scale
+                // initial parameters
+                let start_angle_normal_step = -226;
+                let end_angle_normal_step = 45;
+                let center_x_normal_step = 62;
+                let center_y_normal_step = 224;
+                let radius_normal_step = 54;
+                let line_width_cs_normal_step = 9;
+                let color_cs_normal_step = 0xFF79BCFF;
+                
+                // calculated parameters
+                let arcX_normal_step = center_x_normal_step - radius_normal_step;
+                let arcY_normal_step = center_y_normal_step - radius_normal_step;
+                let CircleWidth_normal_step = 2 * radius_normal_step;
+                let angle_offset_normal_step = end_angle_normal_step - start_angle_normal_step;
+                angle_offset_normal_step = angle_offset_normal_step * progress_cs_normal_step;
+                let end_angle_normal_step_draw = start_angle_normal_step + angle_offset_normal_step;
+                
+                normal_step_circle_scale.setProperty(hmUI.prop.MORE, {
+                x: arcX_normal_step,
+                y: arcY_normal_step,
+                w: CircleWidth_normal_step,
+                h: CircleWidth_normal_step,
+                start_angle: start_angle_normal_step,
+                end_angle: end_angle_normal_step_draw,
+                color: color_cs_normal_step,
+                line_width: line_width_cs_normal_step,
                 });
-              };
             };
-
-            let valueCalories = calorie.current;
-            let targetCalories = calorie.target;
-            let progressCalories = valueCalories/targetCalories;
-            if (progressCalories > 1) progressCalories = 1;
-            let progress_cs_normal_calorie = progressCalories;
+            
+            let valueHeartRate = heart_rate.last;
+            let targetHeartRate = 179;
+            let progressHeartRate = (valueHeartRate - 71)/(targetHeartRate - 71);
+            if (progressHeartRate < 0) progressHeartRate = 0;
+            if (progressHeartRate > 1) progressHeartRate = 1;
+            let progress_cs_normal_heart_rate = progressHeartRate;
 
             if (screenType != hmSetting.screen_type.AOD) {
 
-              // normal_calorie_circle_scale_circle_scale
-              let level = Math.round(progress_cs_normal_calorie * 100);
-              if (normal_calorie_circle_scale) {
-                normal_calorie_circle_scale.setProperty(hmUI.prop.MORE, {                      
-                  center_x: 260,
-                  center_y: 210,
-                  start_angle: 0,
-                  end_angle: 360,
-                  radius: 38,
-                  line_width: 9,
-                  corner_flag: 0,
-                  color: 0xFFF9114F,
-                  show_level: hmUI.show_level.ONLY_NORMAL,
-                  level: level,
+                // normal_heart_rate_circle_scale
+                // initial parameters
+                let start_angle_normal_heart_rate = -230;
+                let end_angle_normal_heart_rate = 47;
+                let center_x_normal_heart_rate = 114;
+                let center_y_normal_heart_rate = 336;
+                let radius_normal_heart_rate = 43;
+                let line_width_cs_normal_heart_rate = 9;
+                let color_cs_normal_heart_rate = 0xFFFF7D7D;
+                
+                // calculated parameters
+                let arcX_normal_heart_rate = center_x_normal_heart_rate - radius_normal_heart_rate;
+                let arcY_normal_heart_rate = center_y_normal_heart_rate - radius_normal_heart_rate;
+                let CircleWidth_normal_heart_rate = 2 * radius_normal_heart_rate;
+                let angle_offset_normal_heart_rate = end_angle_normal_heart_rate - start_angle_normal_heart_rate;
+                angle_offset_normal_heart_rate = angle_offset_normal_heart_rate * progress_cs_normal_heart_rate;
+                let end_angle_normal_heart_rate_draw = start_angle_normal_heart_rate + angle_offset_normal_heart_rate;
+                
+                normal_heart_rate_circle_scale.setProperty(hmUI.prop.MORE, {
+                x: arcX_normal_heart_rate,
+                y: arcY_normal_heart_rate,
+                w: CircleWidth_normal_heart_rate,
+                h: CircleWidth_normal_heart_rate,
+                start_angle: start_angle_normal_heart_rate,
+                end_angle: end_angle_normal_heart_rate_draw,
+                color: color_cs_normal_heart_rate,
+                line_width: line_width_cs_normal_heart_rate,
                 });
-              };
             };
         };
 
@@ -257,10 +359,6 @@ WatchFace({
         if (watchdripData === undefined) return;
         let bgObj = watchdripData.getBg();
 
-        normal_frame_animation_high.setProperty(hmUI.prop.VISIBLE, false);
-        normal_frame_animation_low.setProperty(hmUI.prop.VISIBLE, false);
-        normal_frame_animation_ok.setProperty(hmUI.prop.VISIBLE, false);
-
         bgStatusLow.setProperty(hmUI.prop.VISIBLE, false);
         bgStatusOk.setProperty(hmUI.prop.VISIBLE, false);
         bgStatusHigh.setProperty(hmUI.prop.VISIBLE, false);
@@ -268,16 +366,10 @@ WatchFace({
         if (bgObj.isHasData()) {
             if (bgObj.isHigh) {
                 bgStatusHigh.setProperty(hmUI.prop.VISIBLE, true);
-                normal_frame_animation_high.setProperty(hmUI.prop.VISIBLE, true);
-                normal_frame_animation_high.setProperty(hmUI.prop.ANIM_STATUS,hmUI.anim_status.START);
             } else if (bgObj.isLow) {
                 bgStatusLow.setProperty(hmUI.prop.VISIBLE, true);
-                normal_frame_animation_low.setProperty(hmUI.prop.VISIBLE, true);
-                normal_frame_animation_low.setProperty(hmUI.prop.ANIM_STATUS,hmUI.anim_status.START);
             } else {
                 bgStatusOk.setProperty(hmUI.prop.VISIBLE, true);
-                normal_frame_animation_ok.setProperty(hmUI.prop.VISIBLE, true);
-                normal_frame_animation_ok.setProperty(hmUI.prop.ANIM_STATUS,hmUI.anim_status.START);
             }
         }
 
@@ -286,7 +378,6 @@ WatchFace({
             bgValTextImgWidget_AOD.setProperty(hmUI.prop.TEXT, bgObj.getBGVal());
             bgValTextImgWidget.setProperty(hmUI.prop.VISIBLE, true);
             bgValTextWidget.setProperty(hmUI.prop.VISIBLE, false);
-            normal_bg_text_img.setProperty(hmUI.prop.LEVEL, getAngleBG(bgObj.getBGVal()));
         } else {
             bgValTextWidget.setProperty(hmUI.prop.VISIBLE, true);
             bgValTextImgWidget.setProperty(hmUI.prop.VISIBLE, false);
@@ -294,10 +385,17 @@ WatchFace({
         
         bgDeltaTextWidget.setProperty(hmUI.prop.MORE, { text: bgObj.delta });
         bgDeltaTextWidget_AOD.setProperty(hmUI.prop.MORE, { text: bgObj.delta });
-
-        bgTrendImageWidget.setProperty(hmUI.prop.SRC, bgObj.getArrowResource());
-        bgTrendImageWidget_AOD.setProperty(hmUI.prop.SRC, bgObj.getArrowResource());
-
+        normal_double_trend_animation.setProperty(hmUI.prop.VISIBLE, false);
+        let arrowImgRes = bgObj.getArrowResource()
+        if (!arrowImgRes.includes("Double")) {
+            normal_double_trend_animation.setProperty(hmUI.prop.VISIBLE, false);
+            bgTrendImageWidget.setProperty(hmUI.prop.SRC, arrowImgRes);
+            bgTrendImageWidget.setProperty(hmUI.prop.VISIBLE, true);
+        } 
+        else {
+            bgTrendImageWidget.setProperty(hmUI.prop.VISIBLE, false);
+            normal_double_trend_animation.setProperty(hmUI.prop.VISIBLE, true);
+        }
         // prefer pump iob data
         let pumpObj = watchdripData.getPump();
         let iobValue = pumpObj.getPumpIOB();
@@ -319,10 +417,7 @@ WatchFace({
 
         if (TEST_DATA) {
             treatment.setProperty(hmUI.prop.MORE, { text: "1.2U at 09:32" });
-            normal_frame_animation_high.setProperty(hmUI.prop.VISIBLE, true);
-            normal_frame_animation_low.setProperty(hmUI.prop.VISIBLE, false);
-            normal_frame_animation_ok.setProperty(hmUI.prop.VISIBLE, false);
-            bgStatusLow.setProperty(hmUI.prop.VISIBLE, false);
+            bgStatusLow.setProperty(hmUI.prop.VISIBLE, true);
             bgStatusOk.setProperty(hmUI.prop.VISIBLE, false);
             bgStatusHigh.setProperty(hmUI.prop.VISIBLE, false);
             
@@ -355,9 +450,6 @@ WatchFace({
 
         let isStale= watchdripData.isBgStale();
         if (isStale) {
-            normal_frame_animation_high.setProperty(hmUI.prop.VISIBLE, false);
-            normal_frame_animation_low.setProperty(hmUI.prop.VISIBLE, false);
-            normal_frame_animation_ok.setProperty(hmUI.prop.VISIBLE, false);
             bgStatusLow.setProperty(hmUI.prop.VISIBLE, false);
             bgStatusOk.setProperty(hmUI.prop.VISIBLE, false);
             bgStatusHigh.setProperty(hmUI.prop.VISIBLE, false);
@@ -406,7 +498,7 @@ WatchFace({
             lineStyles['lineLow'] = new PointStyle("", LINE_SIZE);
             lineStyles['lineHigh'] = new PointStyle("", LINE_SIZE);
             lineStyles['treatment'] = new PointStyle(TREATMENT_POINT_SIZE, TREATMENT_POINT_SIZE);
-            watchdrip.createGraph(125,250,140,70, lineStyles);
+            watchdrip.createGraph(172,280,140,70, lineStyles);
             watchdrip.start();
         }
         catch (e) {

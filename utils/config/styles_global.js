@@ -21,7 +21,7 @@ export const BG_FILL_RECT = {
     y: px(0),
     w: px(DEVICE_WIDTH),
     h: px(DEVICE_HEIGHT),
-    color: Colors.defaultTransparent,
+    color: Colors.black,
 }
 
 export const BG_IMG = {

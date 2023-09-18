@@ -1,15 +1,15 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 28961,
-    "appName": "Apple Watchdrip WF",
+    "appId": 28972,
+    "appName": "Digital Watchdrip WF",
     "appType": "watchface",
     "version": {
       "code": 1,
       "name": "1.0.0"
     },
     "vender": "sedy89",
-    "description": "apple watchface",
+    "description": "digital watchface",
     "icon": "images/preview.png"
   },
   "permissions": ["gps"],
