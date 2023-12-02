@@ -6,7 +6,7 @@
     "appType": "watchface",
     "version": {
       "code": 1,
-      "name": "1.0.0"
+      "name": "1.0.1"
     },
     "vender": "sedy89",
     "description": "color watchface",
@@ -121,6 +121,14 @@
         {
           "name": "Amazfit GTS 4",
           "deviceSource": 7995649
+        },
+        {
+          "name": "Amazfit Active",
+          "deviceSource": 8323328
+        },
+        {
+          "name": "Amazfit Active",
+          "deviceSource": 8323329
         },
         {
           "name": "Cheetah Square",
