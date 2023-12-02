@@ -123,11 +123,43 @@
           "deviceSource": 7995649
         },
         {
+          "name": "Amazfit Active",
+          "deviceSource": 8323328
+        },
+        {
+          "name": "Amazfit Active",
+          "deviceSource": 8323329
+        },
+        {
           "name": "Cheetah Square",
           "deviceSource": 8257793
         }
       ],
       "designWidth": 390
+    },
+    "gtrmini": {
+      "module": {
+        "watchface": {
+          "path": "watchface/entry/gtrmini/index",
+          "main": 1,
+          "editable": 1,
+          "lockscreen": 1
+        },
+        "app-side": {
+          "path": "app-side/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gtrmini",
+          "deviceSource": 250
+        },
+        {
+          "name": "gtrmini",
+          "deviceSource": 251
+        }
+      ],
+      "designWidth": 416
     }
   },
   "i18n": {
