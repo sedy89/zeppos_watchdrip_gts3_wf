@@ -58,4 +58,12 @@ export class BgData {
         }
         return `watchdrip/arrows/${fileName}.png`;
     }
+
+    getArrowResource_aod() {
+        let fileName = this.trend;
+        if (fileName === undefined || fileName === "") {
+            fileName = "None";
+        }
+        return `watchdrip/arrows_aod/${fileName}.png`;
+    }
 }

@@ -1,15 +1,15 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 28963,
-    "appName": "Graph Watchdrip WF",
+    "appId": 29003,
+    "appName": "XdripPump Watchdrip WF",
     "appType": "watchface",
     "version": {
       "code": 1,
-      "name": "1.0.1"
+      "name": "2.0.0"
     },
-    "vender": "bigdigital",
-    "description": "graph watchface",
+    "vender": "sedy",
+    "description": "xdrip style sedy watchface",
     "icon": "images/preview.png"
   },
   "permissions": ["gps"],
@@ -21,78 +21,6 @@
     }
   },
   "targets": {
-    "gtr-3-pro": {
-      "module": {
-        "watchface": {
-          "path": "watchface/entry/gtr-3-pro/index",
-          "main": 1,
-          "editable": 1,
-          "lockscreen": 1
-        },
-        "app-side": {
-          "path": "app-side/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "gtr-3-pro",
-          "deviceSource": 229
-        },
-        {
-          "name": "gtr-3-prow",
-          "deviceSource": 230
-        }
-      ],
-      "designWidth": 480
-    },
-    "falcon": {
-      "module": {
-        "watchface": {
-          "path": "watchface/entry/falcon/index",
-          "main": 1,
-          "editable": 1,
-          "lockscreen": 1
-        },
-        "app-side": {
-          "path": "app-side/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "falcon1",
-          "deviceSource": 414
-        },
-        {
-          "name": "falcon2",
-          "deviceSource": 415
-        }
-      ],
-      "designWidth": 416
-  },
-  "gts4mini": {
-      "module": {
-        "watchface": {
-          "path": "watchface/entry/gts4mini/index",
-          "main": 1,
-          "editable": 1,
-          "lockscreen": 1
-        },
-        "app-side": {
-          "path": "app-side/index"
-        }
-      },
-      "platforms": [
-        {
-          "name": "gts4mini",
-          "deviceSource": 246
-        },
-        {
-          "name": "gts4mini2",
-          "deviceSource": 247
-        }
-      ],
-      "designWidth": 336
-    },
     "gts3": {
       "module": {
         "watchface": {

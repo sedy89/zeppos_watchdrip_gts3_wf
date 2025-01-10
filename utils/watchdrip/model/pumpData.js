@@ -6,9 +6,11 @@ export class PumpData {
     }
 
     getPumpIOB() {
-        return "IOB: " + this.iob;
+        return this.iob + "U";
     }
-    
+    getPumpBatt() {
+        return this.bat + "%";
+    }
     static createEmpty() {
         return new PumpData("", "", "");
     }
